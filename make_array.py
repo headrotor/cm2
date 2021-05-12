@@ -4,7 +4,7 @@ pitch = 20*25.4/32.0
 
 def make_refstr(i, j):
     tail = "1"
-    if j > 8:
+    if j >= 8:
         j = j - 8
         tail = "2"
     return "D{:02d}{}{}".format(i,chr(ord("A") + j),tail)
@@ -12,8 +12,11 @@ def make_refstr(i, j):
 def make_posxy(i, j, pitch):
     return("{:.4f} {:.4f}".format(pitch*float(i), pitch*float(j)))
 
-rownet = ["(net {:d} /row{:d})".format(i+1,i) for i in range(0,31)]
-colnet = ["(net {:d} /col{:02d})".format(i+33,i) for i in range(0,15)]
+maxi = 32
+maxj = 16
+
+rownet = ["(net {:d} /row{:d})".format(i+1,i) for i in range(maxi)]
+colnet = ["(net {:d} /col{:02d})".format(j+maxi+1,j) for j in range(maxj)]
     
 
 # refstr = "D00A1"
@@ -27,7 +30,7 @@ mod_template = """
     (descr "LED, diameter 5.0mm, 2 pins, http://cdn-reichelt.de/documents/datenblatt/A500/LL-504BC2E-009.pdf")
     (tags "LED diameter 5.0mm 2 pins")
     (path /60904BD1)
-    (fp_text reference {refstr} (at 1.27 -3.96) (layer F.SilkS)
+    (fp_text reference {refstr} (at 1.27 -3.96) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text value LED_Small_ALT (at 1.27 3.96) (layer F.Fab) hide
@@ -58,29 +61,31 @@ mod_template = """
     )
   )
 """
-i = 1
-j = 2
 
-nets = 0
 
-for i in range(4):
+
+print("**********THIS IS NOT A VALID KICAD FILE**************\n\n")
+
+print("\n******** add this to the list of nets")
+for i in range(maxi):
     print("  " + rownet[i])
-for j in range(4):
+for j in range(maxj):
     print("  " + colnet[j])
         
-for i in range(4):
+print("\n**************add this to the net_class section")
+for i in range(maxi):
     print("    (add_net /row{:d})".format(i))
-for j in range(4):
+for j in range(maxj):
     print("    (add_net /col{:02d})".format(j))
 
-        
-print("    (nets {})".format(i + j + 1))        
-print("    (modules {})".format(i*j))        
+print("\n*********** add this to the general section at top")        
+print("    (nets {})".format(maxi + maxj + 1))        
+print("    (modules {})".format(maxi*maxj))        
 
 
 
-for i in range(4):
-    for j in range(4):
+for i in range(maxi):
+    for j in range(maxj):
         print(mod_template.format(refstr = make_refstr(i, j),
                           net1 = rownet[i],
                           net2 = colnet[j],
