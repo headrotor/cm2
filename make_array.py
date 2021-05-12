@@ -7,13 +7,13 @@ def make_refstr(i, j):
     if j > 8:
         j = j - 8
         tail = "2"
-    return "D{:02d}{}{}".format(i,chr(ord("A") + j - 1),tail)
+    return "D{:02d}{}{}".format(i,chr(ord("A") + j),tail)
 
 def make_posxy(i, j, pitch):
     return("{:.4f} {:.4f}".format(pitch*float(i), pitch*float(j)))
 
-rownet = ["(net {:d} /row{:d})".format(i,i) for i in range(1,32)]
-colnet = ["(net {:d} /col{:02d})".format(i+32,i) for i in range(1,32)]
+rownet = ["(net {:d} /row{:d})".format(i+1,i) for i in range(0,31)]
+colnet = ["(net {:d} /col{:02d})".format(i+33,i) for i in range(0,15)]
     
 
 # refstr = "D00A1"
