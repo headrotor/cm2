@@ -6,7 +6,7 @@
 Usage: `python py3_32x32_sim.py`
 
 
-When server is running, send a `GET` request to the `http:/ip:port`
+When server is running, send a `GET` request to the `http://ip:port`
 url, followed by "`data?`" then a 256-char hex string. Each hex digit
 represents 4 LED bits in row-major order, each of 32 rows row is
 represented by 8 hex digits.  Example: to  draw a box around the
