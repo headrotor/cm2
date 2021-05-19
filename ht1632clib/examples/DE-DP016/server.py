@@ -30,14 +30,13 @@ h=ht1632c.HT1632C(NUM_PANELS, PANEL_ROTATION)
 
 h.pwm(15)
 
-pix_w = 8
-pix_h = 8
+pix_w = 16
+pix_h = 16
 # four bits per hex char
 num_chars = pix_h * pix_w / 4
 chars_per_col = pix_w / 4
 
 
-hex_frame =  "FF818181818181FF"
 
 
 def send_hex(hex_frame):
@@ -45,16 +44,18 @@ def send_hex(hex_frame):
     for i,c in enumerate(hex_frame):
         n = int(c,16) # convert to binary string
         nstr = format(n, '04b')
+        col = i/chars_per_col
+        #print(nstr)
         for j in range(4): # 4 bits per hex char
             if (nstr[j])  == '1': 
-                print('*',end='')
-                h.plot(i/2, m, 1)
+                print('* ',end='')
+                h.plot(col, m, 1)
             else:
-                print('.',end='')
-                h.plot(i/2, m, 0)
-            #print(str((i, i/2,m)))
+                print('- ',end='')
+                h.plot(col, m, 0)
+            #print(str((i, col,m)))
             m += 1
-        if i % chars_per_col:
+        if m >=  pix_h:
             print("")
             m = 0
         #h.plot(j,i,1)
@@ -78,7 +79,6 @@ class ServerHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
       fields = urlparse.urlparse(self.path)
       #print(self.path)
-      print("foobar!")
       print(fields[4])
       hex_frame = fields[4]
       send_hex(str(hex_frame))
