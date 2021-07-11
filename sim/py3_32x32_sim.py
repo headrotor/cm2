@@ -4,8 +4,8 @@
 #
 # Usage: send a GET request to the http:/ip:port url this server is running on,
 # followed by "data?"  then a 256-char hex string. Each hex digit
-# represents 4 LED bits in row-major order, each of 32 rows row is
-# represented by 8 hex digits.  e.g to will draw a box around the display
+# represents 4 LED bits in row-major order, each of the 32 rows is
+# represented by 8 succesive hex digits.  Example: this will draw a box around the display
 #
 # curl -s http://127.0.0.1:8000/data?FFFFFFFF800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001FFFFFFFF
 #
@@ -56,11 +56,6 @@ def print_hex(hex_frame):
         if row >=  pix_h:
             print("")
             row = 0
-
-class MyTCPServer(socketserver.TCPServer):
-    def __init__(self, serverAddress, handler):
-        super().__init__(serverAddress, handler)
-        self.allow_reuse_address = True
 
 class ServerHandler(http.server.SimpleHTTPRequestHandler):
 
