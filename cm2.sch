@@ -10574,23 +10574,23 @@ row63
 $Comp
 L Connector_Generic:Conn_02x06_Counter_Clockwise J1
 U 1 1 613EA1E4
-P 14700 2700
-F 0 "J1" H 14750 3117 50  0000 C CNN
-F 1 "Conn_02x06_Counter_Clockwise" H 14750 3026 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x06_P2.54mm_Horizontal" H 14700 2700 50  0001 C CNN
-F 3 "~" H 14700 2700 50  0001 C CNN
-	1    14700 2700
+P 14700 3100
+F 0 "J1" H 14750 3517 50  0000 C CNN
+F 1 "Conn_02x06_Counter_Clockwise" H 14750 3426 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x06_P2.54mm_Horizontal" H 14700 3100 50  0001 C CNN
+F 3 "~" H 14700 3100 50  0001 C CNN
+	1    14700 3100
 	1    0    0    -1  
 $EndComp
 $Comp
 L Connector_Generic:Conn_02x06_Counter_Clockwise J2
 U 1 1 61409CCC
-P 15400 4300
-F 0 "J2" H 15450 4717 50  0000 C CNN
-F 1 "Conn_02x06_Counter_Clockwise" H 15450 4626 50  0000 C CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_2x06_P2.54mm_Horizontal" H 15400 4300 50  0001 C CNN
-F 3 "~" H 15400 4300 50  0001 C CNN
-	1    15400 4300
+P 14700 4050
+F 0 "J2" H 14750 4467 50  0000 C CNN
+F 1 "Conn_02x06_Counter_Clockwise" H 14750 4376 50  0000 C CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_2x06_P2.54mm_Horizontal" H 14700 4050 50  0001 C CNN
+F 3 "~" H 14700 4050 50  0001 C CNN
+	1    14700 4050
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -11501,6 +11501,317 @@ F 3 "~" H 4600 6100 50  0001 C CNN
 	1    4600 6100
 	1    0    0    -1  
 $EndComp
+$Comp
+L Connector:Screw_Terminal_01x02 J4
+U 1 1 611D7863
+P 1000 7250
+F 0 "J4" V 918 7062 50  0000 R CNN
+F 1 "Screw_Terminal_01x02" V 873 7062 50  0001 R CNN
+F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 1000 7250 50  0001 C CNN
+F 3 "~" H 1000 7250 50  0001 C CNN
+	1    1000 7250
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Connector:Screw_Terminal_01x02 J5
+U 1 1 611E5352
+P 1450 7250
+F 0 "J5" V 1368 7062 50  0000 R CNN
+F 1 "Screw_Terminal_01x02" V 1323 7062 50  0001 R CNN
+F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 1450 7250 50  0001 C CNN
+F 3 "~" H 1450 7250 50  0001 C CNN
+	1    1450 7250
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR0101
+U 1 1 61237164
+P 1500 5600
+F 0 "#PWR0101" H 1500 5350 50  0001 C CNN
+F 1 "GND" H 1505 5427 50  0000 C CNN
+F 2 "" H 1500 5600 50  0001 C CNN
+F 3 "" H 1500 5600 50  0001 C CNN
+	1    1500 5600
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0102
+U 1 1 612446AC
+P 2700 10100
+F 0 "#PWR0102" H 2700 9850 50  0001 C CNN
+F 1 "GND" H 2705 9927 50  0000 C CNN
+F 2 "" H 2700 10100 50  0001 C CNN
+F 3 "" H 2700 10100 50  0001 C CNN
+	1    2700 10100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0103
+U 1 1 6125D3F1
+P 1400 1000
+F 0 "#PWR0103" H 1400 850 50  0001 C CNN
+F 1 "+5V" H 1415 1173 50  0000 C CNN
+F 2 "" H 1400 1000 50  0001 C CNN
+F 3 "" H 1400 1000 50  0001 C CNN
+	1    1400 1000
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0104
+U 1 1 6125D7E7
+P 1500 1000
+F 0 "#PWR0104" H 1500 850 50  0001 C CNN
+F 1 "+5V" H 1515 1173 50  0000 C CNN
+F 2 "" H 1500 1000 50  0001 C CNN
+F 3 "" H 1500 1000 50  0001 C CNN
+	1    1500 1000
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0105
+U 1 1 6125DB45
+P 1600 1000
+F 0 "#PWR0105" H 1600 850 50  0001 C CNN
+F 1 "+5V" H 1615 1173 50  0000 C CNN
+F 2 "" H 1600 1000 50  0001 C CNN
+F 3 "" H 1600 1000 50  0001 C CNN
+	1    1600 1000
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0106
+U 1 1 61286C60
+P 15400 5100
+F 0 "#PWR0106" H 15400 4950 50  0001 C CNN
+F 1 "+5V" H 15415 5273 50  0000 C CNN
+F 2 "" H 15400 5100 50  0001 C CNN
+F 3 "" H 15400 5100 50  0001 C CNN
+	1    15400 5100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0107
+U 1 1 6129F036
+P 15500 5100
+F 0 "#PWR0107" H 15500 4950 50  0001 C CNN
+F 1 "+5V" H 15515 5273 50  0000 C CNN
+F 2 "" H 15500 5100 50  0001 C CNN
+F 3 "" H 15500 5100 50  0001 C CNN
+	1    15500 5100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0108
+U 1 1 612E5D22
+P 15200 7700
+F 0 "#PWR0108" H 15200 7450 50  0001 C CNN
+F 1 "GND" H 15205 7527 50  0000 C CNN
+F 2 "" H 15200 7700 50  0001 C CNN
+F 3 "" H 15200 7700 50  0001 C CNN
+	1    15200 7700
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0109
+U 1 1 612F8B13
+P 15300 7700
+F 0 "#PWR0109" H 15300 7450 50  0001 C CNN
+F 1 "GND" H 15305 7527 50  0000 C CNN
+F 2 "" H 15300 7700 50  0001 C CNN
+F 3 "" H 15300 7700 50  0001 C CNN
+	1    15300 7700
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0110
+U 1 1 612F94AE
+P 15400 7700
+F 0 "#PWR0110" H 15400 7450 50  0001 C CNN
+F 1 "GND" H 15405 7527 50  0000 C CNN
+F 2 "" H 15400 7700 50  0001 C CNN
+F 3 "" H 15400 7700 50  0001 C CNN
+	1    15400 7700
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0111
+U 1 1 61303B81
+P 2800 5400
+F 0 "#PWR0111" H 2800 5250 50  0001 C CNN
+F 1 "+5V" H 2815 5573 50  0000 C CNN
+F 2 "" H 2800 5400 50  0001 C CNN
+F 3 "" H 2800 5400 50  0001 C CNN
+	1    2800 5400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0112
+U 1 1 6130A39F
+P 1650 7100
+F 0 "#PWR0112" H 1650 6950 50  0001 C CNN
+F 1 "+5V" H 1665 7273 50  0000 C CNN
+F 2 "" H 1650 7100 50  0001 C CNN
+F 3 "" H 1650 7100 50  0001 C CNN
+	1    1650 7100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0113
+U 1 1 61318617
+P 1000 7750
+F 0 "#PWR0113" H 1000 7500 50  0001 C CNN
+F 1 "GND" H 1005 7577 50  0000 C CNN
+F 2 "" H 1000 7750 50  0001 C CNN
+F 3 "" H 1000 7750 50  0001 C CNN
+	1    1000 7750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1000 7450 1000 7550
+Wire Wire Line
+	1000 7550 1450 7550
+Wire Wire Line
+	1450 7550 1450 7450
+Connection ~ 1000 7550
+Wire Wire Line
+	1000 7550 1000 7750
+Wire Wire Line
+	1100 7450 1300 7450
+Wire Wire Line
+	1300 7450 1300 7100
+Wire Wire Line
+	1300 7100 1650 7100
+Wire Wire Line
+	1650 7100 1650 7450
+Wire Wire Line
+	1650 7450 1550 7450
+Connection ~ 1650 7100
+$Comp
+L Device:CP1 C1
+U 1 1 61FF4F4A
+P 750 8400
+F 0 "C1" H 865 8446 50  0000 L CNN
+F 1 "100uF" H 865 8355 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D8.0mm_P5.00mm" H 750 8400 50  0001 C CNN
+F 3 "~" H 750 8400 50  0001 C CNN
+	1    750  8400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0114
+U 1 1 61FF7FE6
+P 1300 8600
+F 0 "#PWR0114" H 1300 8350 50  0001 C CNN
+F 1 "GND" H 1305 8427 50  0000 C CNN
+F 2 "" H 1300 8600 50  0001 C CNN
+F 3 "" H 1300 8600 50  0001 C CNN
+	1    1300 8600
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0115
+U 1 1 61FF871A
+P 1300 8150
+F 0 "#PWR0115" H 1300 8000 50  0001 C CNN
+F 1 "+5V" H 1315 8323 50  0000 C CNN
+F 2 "" H 1300 8150 50  0001 C CNN
+F 3 "" H 1300 8150 50  0001 C CNN
+	1    1300 8150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C6
+U 1 1 61FFCC6E
+P 1800 8400
+F 0 "C6" H 1892 8446 50  0000 L CNN
+F 1 "10uF" H 1892 8355 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder" H 1800 8400 50  0001 C CNN
+F 3 "~" H 1800 8400 50  0001 C CNN
+	1    1800 8400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1300 8250 1300 8300
+Wire Wire Line
+	1300 8550 1300 8500
+Wire Wire Line
+	1300 8550 1300 8600
+Connection ~ 1300 8550
+Wire Wire Line
+	1300 8250 1300 8150
+Connection ~ 1300 8250
+Wire Wire Line
+	750  8250 1000 8250
+Wire Wire Line
+	750  8550 1000 8550
+$Comp
+L Device:CP1 C2
+U 1 1 64CCAF61
+P 1000 8400
+F 0 "C2" H 1115 8446 50  0000 L CNN
+F 1 "100uF" H 1115 8355 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D8.0mm_P5.00mm" H 1000 8400 50  0001 C CNN
+F 3 "~" H 1000 8400 50  0001 C CNN
+	1    1000 8400
+	1    0    0    -1  
+$EndComp
+Connection ~ 1000 8250
+Wire Wire Line
+	1000 8250 1300 8250
+Connection ~ 1000 8550
+Wire Wire Line
+	1000 8550 1300 8550
+Wire Wire Line
+	1300 8300 1500 8300
+Wire Wire Line
+	1300 8500 1500 8500
+$Comp
+L Device:C_Small C5
+U 1 1 64CDB52A
+P 1650 8400
+F 0 "C5" H 1742 8446 50  0000 L CNN
+F 1 "10uF" H 1742 8355 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder" H 1650 8400 50  0001 C CNN
+F 3 "~" H 1650 8400 50  0001 C CNN
+	1    1650 8400
+	1    0    0    -1  
+$EndComp
+Connection ~ 1650 8300
+Wire Wire Line
+	1650 8300 1800 8300
+Connection ~ 1650 8500
+Wire Wire Line
+	1650 8500 1800 8500
+$Comp
+L Device:C_Small C4
+U 1 1 64CDBAE5
+P 1500 8400
+F 0 "C4" H 1592 8446 50  0000 L CNN
+F 1 "10uF" H 1592 8355 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder" H 1500 8400 50  0001 C CNN
+F 3 "~" H 1500 8400 50  0001 C CNN
+	1    1500 8400
+	1    0    0    -1  
+$EndComp
+Connection ~ 1500 8300
+Wire Wire Line
+	1500 8300 1650 8300
+Connection ~ 1500 8500
+Wire Wire Line
+	1500 8500 1650 8500
+$Comp
+L Device:C_Small C3
+U 1 1 64CDC089
+P 1300 8400
+F 0 "C3" H 1392 8446 50  0000 L CNN
+F 1 "10uF" H 1392 8355 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder" H 1300 8400 50  0001 C CNN
+F 3 "~" H 1300 8400 50  0001 C CNN
+	1    1300 8400
+	1    0    0    -1  
+$EndComp
+Connection ~ 1300 8300
+Connection ~ 1300 8500
 Wire Bus Line
 	2600 4700 2600 5400
 Wire Bus Line
@@ -11517,4 +11828,26 @@ Wire Bus Line
 	2600 1300 12600 1300
 Wire Bus Line
 	2600 1300 2600 4600
+$Comp
+L Connector_Generic:Conn_02x06_Counter_Clockwise J?
+U 1 1 6539853C
+P 14650 2100
+F 0 "J?" H 14700 2517 50  0000 C CNN
+F 1 "Conn_02x06_Counter_Clockwise" H 14700 2426 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x06_P2.54mm_Horizontal" H 14650 2100 50  0001 C CNN
+F 3 "~" H 14650 2100 50  0001 C CNN
+	1    14650 2100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_02x06_Counter_Clockwise J?
+U 1 1 6539A149
+P 14550 4950
+F 0 "J?" H 14600 5367 50  0000 C CNN
+F 1 "Conn_02x06_Counter_Clockwise" H 14600 5276 50  0000 C CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_2x06_P2.54mm_Horizontal" H 14550 4950 50  0001 C CNN
+F 3 "~" H 14550 4950 50  0001 C CNN
+	1    14550 4950
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
