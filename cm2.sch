@@ -5311,17 +5311,6 @@ Entry Wire Line
 Entry Wire Line
 	12600 1300 12700 1400
 $Comp
-L Driver_LED:HT1632C-52LQFP U2
-U 1 1 68002179
-P 2700 7800
-F 0 "U2" H 2700 5411 50  0000 C CNN
-F 1 "HT1632C-52LQFP" H 2700 5320 50  0000 C CNN
-F 2 "Package_QFP:LQFP-52_14x14mm_P1mm" V 2500 7850 50  0001 C CNN
-F 3 "http://www.holtek.com/documents/10179/116711/HT1632Cv170.pdf" V 2500 7850 50  0001 C CNN
-	1    2700 7800
-	1    0    0    -1  
-$EndComp
-$Comp
 L Device:LED_Small_ALT D00H2
 U 1 1 6800217F
 P 4700 6550
@@ -12023,20 +12012,8 @@ Wire Wire Line
 	11000 9600 11000 9500
 Connection ~ 11000 9500
 Wire Wire Line
-	6800 9600 6800 9500
-Connection ~ 6800 9500
-Wire Wire Line
 	6800 9900 6800 10000
 Connection ~ 6800 10000
-Wire Wire Line
-	6300 10000 6300 9900
-Connection ~ 6300 10000
-Wire Wire Line
-	6300 9600 6300 9500
-Connection ~ 6300 9500
-Wire Wire Line
-	7500 10000 7500 9900
-Connection ~ 7500 10000
 Wire Wire Line
 	8000 10000 8000 9900
 Connection ~ 8000 10000
@@ -12096,9 +12073,9 @@ Wire Wire Line
 Wire Wire Line
 	15800 3200 16250 3200
 Text Label 15950 3200 0    50   ~ 0
-~CE1
+~CS1
 Text Label 15950 3300 0    50   ~ 0
-~CE0
+~CS0
 Wire Wire Line
 	15800 3500 16250 3500
 Text Label 15950 3500 0    50   ~ 0
@@ -12109,9 +12086,9 @@ Wire Wire Line
 Wire Wire Line
 	15800 2300 16250 2300
 Text Label 16000 2200 0    50   ~ 0
-~CE2
+~CS2
 Text Label 16000 2300 0    50   ~ 0
-~CE3
+~CS3
 NoConn ~ 15800 2800
 NoConn ~ 15800 2900
 NoConn ~ 15800 3000
@@ -12152,35 +12129,8 @@ F 3 "https://www.raspberrypi.org/documentation/hardware/raspberrypi/schematics/r
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	6800 9700 7100 9700
-Wire Wire Line
-	6800 9800 7100 9800
-Text Label 6900 9700 0    50   ~ 0
-~CE0
-Text Label 6900 9800 0    50   ~ 0
-~CE1
-Wire Wire Line
-	7500 9700 7250 9700
-Wire Wire Line
-	7500 9800 7250 9800
-Text Label 7300 9700 0    50   ~ 0
-DATA
-Text Label 7300 9800 0    50   ~ 0
-~WR
-Wire Wire Line
-	7500 9600 7500 9500
-Connection ~ 7500 9500
-Wire Wire Line
 	8000 9600 8000 9500
 Connection ~ 8000 9500
-Wire Wire Line
-	8000 9700 8300 9700
-Wire Wire Line
-	8000 9800 8300 9800
-Text Label 8100 9700 0    50   ~ 0
-~CE2
-Text Label 8100 9800 0    50   ~ 0
-~CE3
 $Comp
 L power:GND #PWR0129
 U 1 1 794641AE
@@ -12269,14 +12219,6 @@ Connection ~ 850  9100
 Wire Wire Line
 	850  9400 850  9300
 Connection ~ 850  9300
-Wire Wire Line
-	6300 9700 6050 9700
-Wire Wire Line
-	6300 9800 6050 9800
-Text Label 6100 9700 0    50   ~ 0
-DATA
-Text Label 6100 9800 0    50   ~ 0
-~WR
 $Comp
 L Mechanical:MountingHole H2
 U 1 1 7C93D82C
@@ -12299,22 +12241,6 @@ F 3 "~" H 12550 650 50  0001 C CNN
 	1    12550 650 
 	1    0    0    -1  
 $EndComp
-Wire Bus Line
-	2600 4700 2600 5400
-Wire Bus Line
-	3800 9200 3800 9900
-Wire Bus Line
-	14600 6500 14600 9200
-Wire Bus Line
-	13400 2000 13400 4700
-Wire Bus Line
-	3800 5800 13800 5800
-Wire Bus Line
-	3800 5800 3800 9100
-Wire Bus Line
-	2600 1300 12600 1300
-Wire Bus Line
-	2600 1300 2600 4600
 $Comp
 L Mechanical:MountingHole H10
 U 1 1 7CD5E124
@@ -12403,4 +12329,124 @@ F 3 "~" H 13600 1150 50  0001 C CNN
 	1    13600 1150
 	1    0    0    -1  
 $EndComp
+$Comp
+L Driver_LED:HT1632C-52LQFP U2
+U 1 1 68002179
+P 2700 7800
+F 0 "U2" H 2700 5411 50  0000 C CNN
+F 1 "HT1632C-52LQFP" H 2700 5320 50  0000 C CNN
+F 2 "Package_QFP:LQFP-52_14x14mm_P1mm" V 2500 7850 50  0001 C CNN
+F 3 "http://www.holtek.com/documents/10179/116711/HT1632Cv170.pdf" V 2500 7850 50  0001 C CNN
+	1    2700 7800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2600 5500 2700 5500
+Wire Wire Line
+	2700 5500 2800 5500
+Connection ~ 2700 5500
+Wire Wire Line
+	2800 5500 2800 5400
+Connection ~ 2800 5500
+$Comp
+L power:PWR_FLAG #FLG0101
+U 1 1 62212A38
+P 1300 7100
+F 0 "#FLG0101" H 1300 7175 50  0001 C CNN
+F 1 "PWR_FLAG" H 1300 7273 50  0000 C CNN
+F 2 "" H 1300 7100 50  0001 C CNN
+F 3 "~" H 1300 7100 50  0001 C CNN
+	1    1300 7100
+	1    0    0    -1  
+$EndComp
+Connection ~ 1300 7100
+$Comp
+L power:PWR_FLAG #FLG0102
+U 1 1 6221E976
+P 1450 7550
+F 0 "#FLG0102" H 1450 7625 50  0001 C CNN
+F 1 "PWR_FLAG" H 1450 7723 50  0000 C CNN
+F 2 "" H 1450 7550 50  0001 C CNN
+F 3 "~" H 1450 7550 50  0001 C CNN
+	1    1450 7550
+	-1   0    0    1   
+$EndComp
+Connection ~ 1450 7550
+NoConn ~ 15100 1800
+NoConn ~ 15200 1800
+NoConn ~ 15800 2500
+NoConn ~ 15800 2600
+NoConn ~ 15800 3800
+NoConn ~ 15800 3900
+NoConn ~ 10500 9700
+NoConn ~ 10500 9800
+NoConn ~ 11000 9700
+NoConn ~ 11000 9800
+NoConn ~ 11350 9700
+NoConn ~ 11350 9800
+NoConn ~ 11850 9700
+NoConn ~ 11850 9800
+Wire Wire Line
+	8000 9700 8000 9600
+Connection ~ 8000 9600
+Wire Wire Line
+	8000 9800 8000 9900
+Connection ~ 8000 9900
+Wire Wire Line
+	6800 9900 6800 9800
+Connection ~ 6800 9900
+Wire Wire Line
+	6800 9700 6800 9600
+Wire Wire Line
+	6800 9500 6800 9600
+Connection ~ 6800 9500
+Connection ~ 6800 9600
+Wire Wire Line
+	7500 9800 7150 9800
+Text Label 7200 9800 0    50   ~ 0
+DATA
+Wire Wire Line
+	6300 9700 5950 9700
+Text Label 6000 9700 0    50   ~ 0
+~WR
+Wire Wire Line
+	7500 9700 7150 9700
+Text Label 7200 9700 0    50   ~ 0
+~WR
+Wire Wire Line
+	6300 9800 5950 9800
+Text Label 6000 9800 0    50   ~ 0
+DATA
+Wire Wire Line
+	6300 9600 5950 9600
+Text Label 6000 9600 0    50   ~ 0
+~CS0
+Wire Wire Line
+	6300 9900 5950 9900
+Wire Wire Line
+	7500 9600 7150 9600
+Wire Wire Line
+	7500 9900 7150 9900
+Wire Bus Line
+	2600 4700 2600 5400
+Wire Bus Line
+	3800 9200 3800 9900
+Wire Bus Line
+	14600 6500 14600 9200
+Wire Bus Line
+	13400 2000 13400 4700
+Wire Bus Line
+	3800 5800 13800 5800
+Wire Bus Line
+	3800 5800 3800 9100
+Wire Bus Line
+	2600 1300 12600 1300
+Wire Bus Line
+	2600 1300 2600 4600
+Text Label 6000 9900 0    50   ~ 0
+~CS1
+Text Label 7200 9600 0    50   ~ 0
+~CS2
+Text Label 7200 9900 0    50   ~ 0
+~CS3
 $EndSCHEMATC
