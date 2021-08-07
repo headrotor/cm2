@@ -12233,12 +12233,12 @@ $EndComp
 $Comp
 L Mechanical:MountingHole H1
 U 1 1 7C971961
-P 12550 650
-F 0 "H1" H 12650 696 50  0000 L CNN
-F 1 "Frame MountingHole" H 12650 605 50  0000 L CNN
-F 2 "MountingHole:MountingHole_3.2mm_M3" H 12550 650 50  0001 C CNN
-F 3 "~" H 12550 650 50  0001 C CNN
-	1    12550 650 
+P 10600 650
+F 0 "H1" H 10700 696 50  0000 L CNN
+F 1 "Frame MountingHole" H 10700 605 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 10600 650 50  0001 C CNN
+F 3 "~" H 10600 650 50  0001 C CNN
+	1    10600 650 
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -12277,56 +12277,56 @@ $EndComp
 $Comp
 L Mechanical:MountingHole H4
 U 1 1 7CD69165
-P 12550 850
-F 0 "H4" H 12650 896 50  0000 L CNN
-F 1 "Frame MountingHole" H 12650 805 50  0000 L CNN
-F 2 "MountingHole:MountingHole_3.2mm_M3" H 12550 850 50  0001 C CNN
-F 3 "~" H 12550 850 50  0001 C CNN
-	1    12550 850 
+P 10600 850
+F 0 "H4" H 10700 896 50  0000 L CNN
+F 1 "Frame MountingHole" H 10700 805 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 10600 850 50  0001 C CNN
+F 3 "~" H 10600 850 50  0001 C CNN
+	1    10600 850 
 	1    0    0    -1  
 $EndComp
 $Comp
 L Mechanical:MountingHole H6
 U 1 1 7CD699A9
-P 12550 1100
-F 0 "H6" H 12650 1146 50  0000 L CNN
-F 1 "Frame MountingHole" H 12650 1055 50  0000 L CNN
-F 2 "MountingHole:MountingHole_3.2mm_M3" H 12550 1100 50  0001 C CNN
-F 3 "~" H 12550 1100 50  0001 C CNN
-	1    12550 1100
+P 10600 1050
+F 0 "H6" H 10700 1096 50  0000 L CNN
+F 1 "Frame MountingHole" H 10700 1005 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 10600 1050 50  0001 C CNN
+F 3 "~" H 10600 1050 50  0001 C CNN
+	1    10600 1050
 	1    0    0    -1  
 $EndComp
 $Comp
 L Mechanical:MountingHole H3
 U 1 1 7CD6A2C2
-P 13600 600
-F 0 "H3" H 13700 646 50  0000 L CNN
-F 1 "Frame MountingHole" H 13700 555 50  0000 L CNN
-F 2 "MountingHole:MountingHole_3.2mm_M3" H 13600 600 50  0001 C CNN
-F 3 "~" H 13600 600 50  0001 C CNN
-	1    13600 600 
+P 11650 650
+F 0 "H3" H 11750 696 50  0000 L CNN
+F 1 "Frame MountingHole" H 11750 605 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 11650 650 50  0001 C CNN
+F 3 "~" H 11650 650 50  0001 C CNN
+	1    11650 650 
 	1    0    0    -1  
 $EndComp
 $Comp
 L Mechanical:MountingHole H5
 U 1 1 7CD6AC24
-P 13600 900
-F 0 "H5" H 13700 946 50  0000 L CNN
-F 1 "Frame MountingHole" H 13700 855 50  0000 L CNN
-F 2 "MountingHole:MountingHole_3.2mm_M3" H 13600 900 50  0001 C CNN
-F 3 "~" H 13600 900 50  0001 C CNN
-	1    13600 900 
+P 11650 850
+F 0 "H5" H 11750 896 50  0000 L CNN
+F 1 "Frame MountingHole" H 11750 805 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 11650 850 50  0001 C CNN
+F 3 "~" H 11650 850 50  0001 C CNN
+	1    11650 850 
 	1    0    0    -1  
 $EndComp
 $Comp
 L Mechanical:MountingHole H7
 U 1 1 7CD6B4CD
-P 13600 1150
-F 0 "H7" H 13700 1196 50  0000 L CNN
-F 1 "Frame MountingHole" H 13700 1105 50  0000 L CNN
-F 2 "MountingHole:MountingHole_3.2mm_M3" H 13600 1150 50  0001 C CNN
-F 3 "~" H 13600 1150 50  0001 C CNN
-	1    13600 1150
+P 11650 1050
+F 0 "H7" H 11750 1096 50  0000 L CNN
+F 1 "Frame MountingHole" H 11750 1005 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 11650 1050 50  0001 C CNN
+F 3 "~" H 11650 1050 50  0001 C CNN
+	1    11650 1050
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -12427,6 +12427,111 @@ Wire Wire Line
 	7500 9600 7150 9600
 Wire Wire Line
 	7500 9900 7150 9900
+Text Label 6000 9900 0    50   ~ 0
+~CS1
+Text Label 7200 9600 0    50   ~ 0
+~CS2
+Text Label 7200 9900 0    50   ~ 0
+~CS3
+$Comp
+L Mechanical:MountingHole H11
+U 1 1 6146CD3E
+P 12750 650
+F 0 "H11" H 12850 696 50  0000 L CNN
+F 1 "Frame MountingHole" H 12850 605 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 12750 650 50  0001 C CNN
+F 3 "~" H 12750 650 50  0001 C CNN
+	1    12750 650 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H12
+U 1 1 6146CD44
+P 12750 850
+F 0 "H12" H 12850 896 50  0000 L CNN
+F 1 "Frame MountingHole" H 12850 805 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 12750 850 50  0001 C CNN
+F 3 "~" H 12750 850 50  0001 C CNN
+	1    12750 850 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H13
+U 1 1 6146CD4A
+P 12750 1050
+F 0 "H13" H 12850 1096 50  0000 L CNN
+F 1 "Frame MountingHole" H 12850 1005 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 12750 1050 50  0001 C CNN
+F 3 "~" H 12750 1050 50  0001 C CNN
+	1    12750 1050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H?
+U 1 1 638249F4
+P 13800 650
+F 0 "H?" H 13900 696 50  0000 L CNN
+F 1 "Frame MountingHole" H 13900 605 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 13800 650 50  0001 C CNN
+F 3 "~" H 13800 650 50  0001 C CNN
+	1    13800 650 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H?
+U 1 1 638249FA
+P 13800 850
+F 0 "H?" H 13900 896 50  0000 L CNN
+F 1 "Frame MountingHole" H 13900 805 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 13800 850 50  0001 C CNN
+F 3 "~" H 13800 850 50  0001 C CNN
+	1    13800 850 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H?
+U 1 1 63824A00
+P 13800 1050
+F 0 "H?" H 13900 1096 50  0000 L CNN
+F 1 "Frame MountingHole" H 13900 1005 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 13800 1050 50  0001 C CNN
+F 3 "~" H 13800 1050 50  0001 C CNN
+	1    13800 1050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H?
+U 1 1 63824A06
+P 14900 650
+F 0 "H?" H 15000 696 50  0000 L CNN
+F 1 "Frame MountingHole" H 15000 605 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 14900 650 50  0001 C CNN
+F 3 "~" H 14900 650 50  0001 C CNN
+	1    14900 650 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H?
+U 1 1 63824A0C
+P 14900 850
+F 0 "H?" H 15000 896 50  0000 L CNN
+F 1 "Frame MountingHole" H 15000 805 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 14900 850 50  0001 C CNN
+F 3 "~" H 14900 850 50  0001 C CNN
+	1    14900 850 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H?
+U 1 1 63824A12
+P 14900 1050
+F 0 "H?" H 15000 1096 50  0000 L CNN
+F 1 "Frame MountingHole" H 15000 1005 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 14900 1050 50  0001 C CNN
+F 3 "~" H 14900 1050 50  0001 C CNN
+	1    14900 1050
+	1    0    0    -1  
+$EndComp
 Wire Bus Line
 	2600 4700 2600 5400
 Wire Bus Line
@@ -12443,10 +12548,4 @@ Wire Bus Line
 	2600 1300 12600 1300
 Wire Bus Line
 	2600 1300 2600 4600
-Text Label 6000 9900 0    50   ~ 0
-~CS1
-Text Label 7200 9600 0    50   ~ 0
-~CS2
-Text Label 7200 9900 0    50   ~ 0
-~CS3
 $EndSCHEMATC
