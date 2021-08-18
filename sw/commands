@@ -1,0 +1,8 @@
+./spidev_test -D /dev/spidev0.0
+ echo -ne "\x01\x02\x03" > /dev/spidev0.0
+ wget https://raw.githubusercontent.com/raspberrypi/linux/rpi-3.10.y/Documentation/spi/spidev_test.c
+ gcc -o spidev_test spidev_test.c
+ ./spidev_test -D /dev/spidev0.0
+sudo python send_frame.py FFFFFFFFFFFFFFF
+ sudo echo -ne "\x01\xAA\xFF" > /dev/spidev0.0
+ gpio readall
