@@ -21,8 +21,12 @@
 	#define HT1632_CLK  10          /* chip select clock pin */
 	#define HT1632_CS   11          /* chip select data pin */
 #else
-	#define HT1632_CS   10          /* first chip select pin; */
-	                                /* successive pin numbers are used for additional chips */
+	#define HT1632_CS   21          /* first chip select pin; */
+
+/*#define HT1632_CS   10           first chip select pin; */
+	                                /* successive pin numbers are used for additional chips 
+uses wPi nbumbering, see "gpio readall"*/
+
 #endif
 
 // panel parameters
@@ -35,7 +39,8 @@
 	#define COLORS 2                /* number of colors (1 or 2) */
 #endif
 #ifdef PANEL_24x16
-	#define CHIPS_PER_PANEL 1       /* ht1632c chips per panel */
+	#define CHIPS_PER_PANEL 4       /* ht1632c chips per panel */
+//#define CHIPS_PER_PANEL 1       /* ht1632c chips per panel */
 	#define PANEL_WIDTH 24          /* panel width (pixels) */
 	#define PANEL_HEIGHT 16         /* panel height (pixels) */
 	#define CHIP_WIDTH 24           /* chip width (pixels) */

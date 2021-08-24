@@ -8,7 +8,7 @@
 #include "ht1632c.h"
 #include "rotenc.h"
 
-#define NUM_PANELS 3
+#define NUM_PANELS 1
 #define PANEL_ROTATION 0
 #define WIDTH (NUM_PANELS * 32)
 #define HEIGHT 16
@@ -17,17 +17,17 @@
 #define ROTENC_PIN_1 4
 #define ROTENC_PIN_BTN 2
 
-void rotenc(int value)
-{
-	printf("rotenc: %d\n", value);
-}
+/* void rotenc(int value) */
+/* { */
+/* 	printf("rotenc: %d\n", value); */
+/* } */
 
 int main(void)
 {
-	printf("init rotenc\n");
-	rotenc_init(ROTENC_PIN_0, ROTENC_PIN_1, ROTENC_PIN_BTN, &rotenc);
+  //	printf("init rotenc\n");
+  //	rotenc_init(ROTENC_PIN_0, ROTENC_PIN_1, ROTENC_PIN_BTN, &rotenc);
 	
-	printf("init ht1632c\n");
+	printf("test: init ht1632c\n");
 	ht1632c_init(NUM_PANELS, PANEL_ROTATION);
 	
 // 	printf("set pwm\n");
