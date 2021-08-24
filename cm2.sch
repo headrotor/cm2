@@ -12060,50 +12060,24 @@ Wire Wire Line
 	15100 4400 15200 4400
 Connection ~ 15100 4400
 Wire Wire Line
-	15200 4400 15300 4400
-Connection ~ 15200 4400
-Wire Wire Line
 	14600 4400 14600 4550
 Wire Wire Line
 	15800 3600 16250 3600
 Text Label 15950 3600 0    50   ~ 0
 ~WR
 Wire Wire Line
-	15800 3300 16250 3300
-Wire Wire Line
-	15800 3200 16250 3200
-Text Label 15950 3200 0    50   ~ 0
-~CS1
-Text Label 15950 3300 0    50   ~ 0
-~CS0
-Wire Wire Line
 	15800 3500 16250 3500
 Text Label 15950 3500 0    50   ~ 0
 DATA
 NoConn ~ 15800 3400
-Wire Wire Line
-	15800 2200 16250 2200
-Wire Wire Line
-	15800 2300 16250 2300
-Text Label 16000 2200 0    50   ~ 0
-~CS2
-Text Label 16000 2300 0    50   ~ 0
-~CS3
 NoConn ~ 15800 2800
-NoConn ~ 15800 2900
-NoConn ~ 15800 3000
 NoConn ~ 14200 2200
 NoConn ~ 14200 2300
 NoConn ~ 14200 2500
 NoConn ~ 14200 2600
 NoConn ~ 14200 2700
-NoConn ~ 14200 2900
 NoConn ~ 14200 3000
 NoConn ~ 14200 3100
-NoConn ~ 14200 3300
-NoConn ~ 14200 3400
-NoConn ~ 14200 3500
-NoConn ~ 14200 3600
 NoConn ~ 14200 3700
 NoConn ~ 14200 3800
 Connection ~ 14600 4400
@@ -12377,7 +12351,6 @@ NoConn ~ 15200 1800
 NoConn ~ 15800 2500
 NoConn ~ 15800 2600
 NoConn ~ 15800 3800
-NoConn ~ 15800 3900
 NoConn ~ 10500 9700
 NoConn ~ 10500 9800
 NoConn ~ 11000 9700
@@ -12467,10 +12440,10 @@ F 3 "~" H 12750 1050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Mechanical:MountingHole H?
+L Mechanical:MountingHole H14
 U 1 1 638249F4
 P 13800 650
-F 0 "H?" H 13900 696 50  0000 L CNN
+F 0 "H14" H 13900 696 50  0000 L CNN
 F 1 "Frame MountingHole" H 13900 605 50  0000 L CNN
 F 2 "MountingHole:MountingHole_3.2mm_M3" H 13800 650 50  0001 C CNN
 F 3 "~" H 13800 650 50  0001 C CNN
@@ -12478,10 +12451,10 @@ F 3 "~" H 13800 650 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Mechanical:MountingHole H?
+L Mechanical:MountingHole H16
 U 1 1 638249FA
 P 13800 850
-F 0 "H?" H 13900 896 50  0000 L CNN
+F 0 "H16" H 13900 896 50  0000 L CNN
 F 1 "Frame MountingHole" H 13900 805 50  0000 L CNN
 F 2 "MountingHole:MountingHole_3.2mm_M3" H 13800 850 50  0001 C CNN
 F 3 "~" H 13800 850 50  0001 C CNN
@@ -12489,10 +12462,10 @@ F 3 "~" H 13800 850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Mechanical:MountingHole H?
+L Mechanical:MountingHole H18
 U 1 1 63824A00
 P 13800 1050
-F 0 "H?" H 13900 1096 50  0000 L CNN
+F 0 "H18" H 13900 1096 50  0000 L CNN
 F 1 "Frame MountingHole" H 13900 1005 50  0000 L CNN
 F 2 "MountingHole:MountingHole_3.2mm_M3" H 13800 1050 50  0001 C CNN
 F 3 "~" H 13800 1050 50  0001 C CNN
@@ -12500,10 +12473,10 @@ F 3 "~" H 13800 1050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Mechanical:MountingHole H?
+L Mechanical:MountingHole H15
 U 1 1 63824A06
 P 14900 650
-F 0 "H?" H 15000 696 50  0000 L CNN
+F 0 "H15" H 15000 696 50  0000 L CNN
 F 1 "Frame MountingHole" H 15000 605 50  0000 L CNN
 F 2 "MountingHole:MountingHole_3.2mm_M3" H 14900 650 50  0001 C CNN
 F 3 "~" H 14900 650 50  0001 C CNN
@@ -12511,10 +12484,10 @@ F 3 "~" H 14900 650 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Mechanical:MountingHole H?
+L Mechanical:MountingHole H17
 U 1 1 63824A0C
 P 14900 850
-F 0 "H?" H 15000 896 50  0000 L CNN
+F 0 "H17" H 15000 896 50  0000 L CNN
 F 1 "Frame MountingHole" H 15000 805 50  0000 L CNN
 F 2 "MountingHole:MountingHole_3.2mm_M3" H 14900 850 50  0001 C CNN
 F 3 "~" H 14900 850 50  0001 C CNN
@@ -12522,16 +12495,43 @@ F 3 "~" H 14900 850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Mechanical:MountingHole H?
+L Mechanical:MountingHole H19
 U 1 1 63824A12
 P 14900 1050
-F 0 "H?" H 15000 1096 50  0000 L CNN
+F 0 "H19" H 15000 1096 50  0000 L CNN
 F 1 "Frame MountingHole" H 15000 1005 50  0000 L CNN
 F 2 "MountingHole:MountingHole_3.2mm_M3" H 14900 1050 50  0001 C CNN
 F 3 "~" H 14900 1050 50  0001 C CNN
 	1    14900 1050
 	1    0    0    -1  
 $EndComp
+NoConn ~ 15800 3300
+NoConn ~ 15800 3200
+NoConn ~ 15800 2200
+NoConn ~ 15800 2300
+Wire Wire Line
+	15200 4400 15300 4400
+Connection ~ 15200 4400
+Wire Wire Line
+	15800 2900 16250 2900
+Text Label 15950 2900 0    50   ~ 0
+~CS0
+Wire Wire Line
+	15800 3000 16250 3000
+Text Label 15950 3000 0    50   ~ 0
+~CS1
+Wire Wire Line
+	15800 3900 16250 3900
+Text Label 15950 3900 0    50   ~ 0
+~CS2
+Wire Wire Line
+	14200 2900 13750 2900
+Text Label 13900 2900 0    50   ~ 0
+~CS3
+NoConn ~ 14200 3300
+NoConn ~ 14200 3400
+NoConn ~ 14200 3500
+NoConn ~ 14200 3600
 Wire Bus Line
 	2600 4700 2600 5400
 Wire Bus Line
@@ -12548,4 +12548,6 @@ Wire Bus Line
 	2600 1300 12600 1300
 Wire Bus Line
 	2600 1300 2600 4600
+Text Notes 14000 3950 1    50   ~ 0
+This PI connector pinout is wrong! \nGPIO.21, pin 29 = ~CS0 \nGPIO.22, pin 31 = ~CS1\nGPIO.23, pin 33 = ~CS2\nGPIO.24, pin 35 = ~CS3
 $EndSCHEMATC
