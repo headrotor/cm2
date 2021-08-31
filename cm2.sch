@@ -11637,7 +11637,7 @@ U 1 1 61FF4F4A
 P 750 8400
 F 0 "C1" H 865 8446 50  0000 L CNN
 F 1 "100uF" H 865 8355 50  0000 L CNN
-F 2 "Capacitor_THT:CP_Radial_D8.0mm_P5.00mm" H 750 8400 50  0001 C CNN
+F 2 "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm" H 750 8400 50  0001 C CNN
 F 3 "~" H 750 8400 50  0001 C CNN
 	1    750  8400
 	1    0    0    -1  
@@ -11695,7 +11695,7 @@ U 1 1 64CCAF61
 P 1000 8400
 F 0 "C2" H 1115 8446 50  0000 L CNN
 F 1 "100uF" H 1115 8355 50  0000 L CNN
-F 2 "Capacitor_THT:CP_Radial_D8.0mm_P5.00mm" H 1000 8400 50  0001 C CNN
+F 2 "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm" H 1000 8400 50  0001 C CNN
 F 3 "~" H 1000 8400 50  0001 C CNN
 	1    1000 8400
 	1    0    0    -1  
@@ -11758,92 +11758,6 @@ $EndComp
 Connection ~ 1300 8300
 Connection ~ 1300 8500
 $Comp
-L Connector_Generic:Conn_02x06_Counter_Clockwise J6
-U 1 1 6539853C
-P 10700 9700
-F 0 "J6" H 10750 10117 50  0000 C CNN
-F 1 "Conn_02x06_Counter_Clockwise" H 10750 10026 50  0001 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x06_P2.54mm_Horizontal" H 10700 9700 50  0001 C CNN
-F 3 "~" H 10700 9700 50  0001 C CNN
-	1    10700 9700
-	1    0    0    -1  
-$EndComp
-$Comp
-L Connector_Generic:Conn_02x06_Counter_Clockwise J7
-U 1 1 6539A149
-P 11550 9700
-F 0 "J7" H 11600 10117 50  0000 C CNN
-F 1 "Conn_02x06_Counter_Clockwise" H 11600 10026 50  0001 C CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_2x06_P2.54mm_Horizontal" H 11550 9700 50  0001 C CNN
-F 3 "~" H 11550 9700 50  0001 C CNN
-	1    11550 9700
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0107
-U 1 1 66AA7259
-P 11350 10150
-F 0 "#PWR0107" H 11350 9900 50  0001 C CNN
-F 1 "GND" H 11355 9977 50  0000 C CNN
-F 2 "" H 11350 10150 50  0001 C CNN
-F 3 "" H 11350 10150 50  0001 C CNN
-	1    11350 10150
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0109
-U 1 1 66AA9378
-P 11850 10150
-F 0 "#PWR0109" H 11850 9900 50  0001 C CNN
-F 1 "GND" H 11855 9977 50  0000 C CNN
-F 2 "" H 11850 10150 50  0001 C CNN
-F 3 "" H 11850 10150 50  0001 C CNN
-	1    11850 10150
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+5V #PWR0110
-U 1 1 66AC0730
-P 11350 9350
-F 0 "#PWR0110" H 11350 9200 50  0001 C CNN
-F 1 "+5V" H 11365 9523 50  0000 C CNN
-F 2 "" H 11350 9350 50  0001 C CNN
-F 3 "" H 11350 9350 50  0001 C CNN
-	1    11350 9350
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+5V #PWR0116
-U 1 1 66ADB486
-P 11850 9350
-F 0 "#PWR0116" H 11850 9200 50  0001 C CNN
-F 1 "+5V" H 11865 9523 50  0000 C CNN
-F 2 "" H 11850 9350 50  0001 C CNN
-F 3 "" H 11850 9350 50  0001 C CNN
-	1    11850 9350
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	11350 9600 11350 9500
-Wire Wire Line
-	11350 9500 11350 9350
-Connection ~ 11350 9500
-Wire Wire Line
-	11850 9600 11850 9500
-Wire Wire Line
-	11850 9350 11850 9500
-Connection ~ 11850 9500
-Wire Wire Line
-	11350 10150 11350 10000
-Wire Wire Line
-	11350 9900 11350 10000
-Connection ~ 11350 10000
-Wire Wire Line
-	11850 9900 11850 10000
-Wire Wire Line
-	11850 10000 11850 10150
-Connection ~ 11850 10000
-$Comp
 L power:GND #PWR0117
 U 1 1 6850DC21
 P 7500 10150
@@ -11896,32 +11810,6 @@ Wire Wire Line
 Wire Wire Line
 	6800 10000 6800 10150
 $Comp
-L power:GND #PWR0121
-U 1 1 6888CD27
-P 10500 10150
-F 0 "#PWR0121" H 10500 9900 50  0001 C CNN
-F 1 "GND" H 10505 9977 50  0000 C CNN
-F 2 "" H 10500 10150 50  0001 C CNN
-F 3 "" H 10500 10150 50  0001 C CNN
-	1    10500 10150
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0122
-U 1 1 6888CD31
-P 11000 10150
-F 0 "#PWR0122" H 11000 9900 50  0001 C CNN
-F 1 "GND" H 11005 9977 50  0000 C CNN
-F 2 "" H 11000 10150 50  0001 C CNN
-F 3 "" H 11000 10150 50  0001 C CNN
-	1    11000 10150
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	10500 10150 10500 10000
-Wire Wire Line
-	11000 10000 11000 10150
-$Comp
 L power:+5V #PWR0123
 U 1 1 68C351D3
 P 7500 9350
@@ -11973,44 +11861,6 @@ Wire Wire Line
 	6300 9500 6300 9350
 Wire Wire Line
 	6800 9350 6800 9500
-$Comp
-L power:+5V #PWR0127
-U 1 1 692DA58F
-P 10500 9350
-F 0 "#PWR0127" H 10500 9200 50  0001 C CNN
-F 1 "+5V" H 10515 9523 50  0000 C CNN
-F 2 "" H 10500 9350 50  0001 C CNN
-F 3 "" H 10500 9350 50  0001 C CNN
-	1    10500 9350
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+5V #PWR0128
-U 1 1 692DA595
-P 11000 9350
-F 0 "#PWR0128" H 11000 9200 50  0001 C CNN
-F 1 "+5V" H 11015 9523 50  0000 C CNN
-F 2 "" H 11000 9350 50  0001 C CNN
-F 3 "" H 11000 9350 50  0001 C CNN
-	1    11000 9350
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	10500 9500 10500 9350
-Wire Wire Line
-	11000 9350 11000 9500
-Wire Wire Line
-	10500 9500 10500 9600
-Connection ~ 10500 9500
-Wire Wire Line
-	10500 10000 10500 9900
-Connection ~ 10500 10000
-Wire Wire Line
-	11000 10000 11000 9900
-Connection ~ 11000 10000
-Wire Wire Line
-	11000 9600 11000 9500
-Connection ~ 11000 9500
 Wire Wire Line
 	6800 9900 6800 10000
 Connection ~ 6800 10000
@@ -12125,17 +11975,6 @@ F 1 "+5V" H 865 9123 50  0000 C CNN
 F 2 "" H 850 8950 50  0001 C CNN
 F 3 "" H 850 8950 50  0001 C CNN
 	1    850  8950
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C_Small C10
-U 1 1 794641BA
-P 1350 9200
-F 0 "C10" H 1442 9246 50  0000 L CNN
-F 1 "10uF" H 1442 9155 50  0000 L CNN
-F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder" H 1350 9200 50  0001 C CNN
-F 3 "~" H 1350 9200 50  0001 C CNN
-	1    1350 9200
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -12351,14 +12190,6 @@ NoConn ~ 15200 1800
 NoConn ~ 15800 2500
 NoConn ~ 15800 2600
 NoConn ~ 15800 3800
-NoConn ~ 10500 9700
-NoConn ~ 10500 9800
-NoConn ~ 11000 9700
-NoConn ~ 11000 9800
-NoConn ~ 11350 9700
-NoConn ~ 11350 9800
-NoConn ~ 11850 9700
-NoConn ~ 11850 9800
 Wire Wire Line
 	8000 9700 8000 9600
 Connection ~ 8000 9600
@@ -12532,6 +12363,55 @@ NoConn ~ 14200 3300
 NoConn ~ 14200 3400
 NoConn ~ 14200 3500
 NoConn ~ 14200 3600
+Text Notes 14000 3950 1    50   ~ 0
+This PI connector pinout is wrong! \nGPIO.21, pin 29 = ~CS0 \nGPIO.22, pin 31 = ~CS1\nGPIO.23, pin 33 = ~CS2\nGPIO.24, pin 35 = ~CS3
+Wire Wire Line
+	1550 9050 1800 9050
+Wire Wire Line
+	1550 9350 1800 9350
+$Comp
+L Device:CP1 C?
+U 1 1 66CA03F6
+P 1800 9200
+F 0 "C?" H 1915 9246 50  0000 L CNN
+F 1 "100uF" H 1915 9155 50  0000 L CNN
+F 2 "Capacitor_SMD:CP_Elec_6.3x7.7" H 1800 9200 50  0001 C CNN
+F 3 "~" H 1800 9200 50  0001 C CNN
+	1    1800 9200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C10
+U 1 1 794641BA
+P 1350 9200
+F 0 "C10" H 1442 9246 50  0000 L CNN
+F 1 "10uF" H 1442 9155 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder" H 1350 9200 50  0001 C CNN
+F 3 "~" H 1350 9200 50  0001 C CNN
+	1    1350 9200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:CP1 C?
+U 1 1 66CA03EE
+P 1550 9200
+F 0 "C?" H 1665 9246 50  0000 L CNN
+F 1 "100uF" H 1665 9155 50  0000 L CNN
+F 2 "Capacitor_SMD:CP_Elec_6.3x7.7" H 1550 9200 50  0001 C CNN
+F 3 "~" H 1550 9200 50  0001 C CNN
+	1    1550 9200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1350 9100 1350 9050
+Wire Wire Line
+	1350 9050 1550 9050
+Connection ~ 1350 9100
+Connection ~ 1550 9050
+Wire Wire Line
+	1350 9300 1350 9350
+Wire Wire Line
+	1350 9350 1550 9350
 Wire Bus Line
 	2600 4700 2600 5400
 Wire Bus Line
@@ -12548,6 +12428,8 @@ Wire Bus Line
 	2600 1300 12600 1300
 Wire Bus Line
 	2600 1300 2600 4600
-Text Notes 14000 3950 1    50   ~ 0
-This PI connector pinout is wrong! \nGPIO.21, pin 29 = ~CS0 \nGPIO.22, pin 31 = ~CS1\nGPIO.23, pin 33 = ~CS2\nGPIO.24, pin 35 = ~CS3
+Connection ~ 1350 9300
+Connection ~ 1550 9350
+Text Notes 550  9900 0    50   ~ 0
+Design for either SMT or TH large caps, \nno need to install both!\n(DNP either C1, C2 or CX CY)
 $EndSCHEMATC
