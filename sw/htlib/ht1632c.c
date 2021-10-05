@@ -187,15 +187,18 @@ int ht1632c_init(const int num_panels, const int rot)
 	pinMode(HT1632_CS, OUTPUT);
 	printf("chained mode\n");
 #else
-	for (int i = 0; i < NUM_CHIPS; ++i)
+	for (int i = 0; i < NUM_CHIPS; ++i) {
 		pinMode(HT1632_CS + i, OUTPUT);
+		printf("GPIO.%d configured as CS output\n",HT1632_CS + i);
+	}
 	printf("NUM_CHIPS %d\n",NUM_CHIPS);
 #endif
 	
 	// init display
 	ht1632c_sendcmd(HT1632_CS_ALL, HT1632_CMD_SYSDIS);
 	//	ht1632c_sendcmd(HT1632_CS_ALL, (CHIP_HEIGHT <= 8) ? HT1632_CMD_COMS00 : HT1632_CMD_COMS01);
-	ht1632c_sendcmd(HT1632_CS_ALL, HT1632_CMD_COMS11);
+	//ht1632c_sendcmd(HT1632_CS_ALL, HT1632_CMD_COMS11);
+	ht1632c_sendcmd(HT1632_CS_ALL, HT1632_CMD_COMS00);
 	ht1632c_sendcmd(HT1632_CS_ALL, HT1632_CMD_MSTMD);
 	ht1632c_sendcmd(HT1632_CS_ALL, HT1632_CMD_RCCLK);
 	ht1632c_sendcmd(HT1632_CS_ALL, HT1632_CMD_SYSON);

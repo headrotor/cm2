@@ -11,7 +11,7 @@
 #define NUM_PANELS 1
 #define PANEL_ROTATION 0
 #define WIDTH (NUM_PANELS * 32)
-#define HEIGHT 16
+#define HEIGHT 8
 
 #define ROTENC_PIN_0 3
 #define ROTENC_PIN_1 4
@@ -91,9 +91,34 @@ int main(void)
 // 		i++;
 // 		usleep(100000);
 // 	}
-	
-	ht1632c_line(0, 0, WIDTH - 1, HEIGHT - 1, RED);
-	ht1632c_line(0, HEIGHT - 1, WIDTH - 1, 0, RED);
+
+	while(1) {
+	  for (int i =0; i<WIDTH; i++){
+	    for (int j=0; j<HEIGHT; j++){
+	      ht1632c_plot(j, i, 1);
+	    }
+	  }
+	  ht1632c_sendframe();
+	  printf("sent bright\n");
+	  usleep(100000);
+
+	  for (int i =0; i<WIDTH; i++){
+	    for (int j=0; j<HEIGHT; j++){
+	      ht1632c_plot(j, i, 0);
+	    }
+	  }
+	  ht1632c_sendframe();
+	  printf("sent off\n");
+	}
+
+
+
+	//	ht1632c_line(0, 0, WIDTH - 1, HEIGHT - 1, RED);
+	usleep(100000);
+
+
+
+	//ht1632c_line(0, HEIGHT - 1, WIDTH - 1, 0, RED);
 // 	ht1632c_box(0, 0, WIDTH - 1, HEIGHT - 1, ORANGE);
 	ht1632c_sendframe();
 	
