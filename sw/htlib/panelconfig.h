@@ -46,6 +46,8 @@ uses wPi nbumbering, see "gpio readall"*/
 	#define CHIP_WIDTH 8           /* chip width (pixels) */
 	#define CHIP_HEIGHT 32           /* chip height (pixels) */
 	#define COLORS 1                /* number of colors (1 or 2) */
+        static const uint8_t chip_lu[] = {1, 0, 3, 2};
+
 #endif
 #ifdef PANEL_32x16C
 	#define CHIPS_PER_PANEL 4       /* ht1632c chips per panel */

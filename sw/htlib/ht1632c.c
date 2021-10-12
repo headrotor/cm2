@@ -1,5 +1,7 @@
 #include "ht1632c.h"
 
+
+#include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -60,6 +62,8 @@ static int ht1632c_num_panels = 0;
 #define NUM_CHIPS (CHIPS_PER_PANEL * ht1632c_num_panels) /* total number of chips */
 #define WIDTH (PANEL_WIDTH * ht1632c_num_panels)
 #define HEIGHT PANEL_HEIGHT
+
+
 
 /// frame buffer
 static uint8_t* ht1632c_framebuffer = 0;
@@ -248,13 +252,23 @@ void ht1632c_sendframe()
 	piUnlock(LOCK_ID);
 }
 
+uint8_t reverse(uint8_t b) {
+   b = (b & 0xF0) >> 4 | (b & 0x0F) << 4;
+   b = (b & 0xCC) >> 2 | (b & 0x33) << 2;
+   b = (b & 0xAA) >> 1 | (b & 0x55) << 1;
+   return b;
+}
+
+
 void ht1632c_clear()
 {
 	// clear buffer
 	memset(ht1632c_framebuffer, 0, NUM_CHIPS * CHIP_SIZE);
 	// init headers
 	for (int i = 0; i < NUM_CHIPS; ++i) {
-		*FB_PTR(i, 0) = HT1632_ID_WR << (8 - HT1632_ID_LEN);
+	  // first 10 bits in buffer are 101 (Write ID) + 7 zero addr bits.
+	  // first data bit starts 10 bits in at address 1, bit 2 (3rd bit in)
+	  *FB_PTR(i, 0) = HT1632_ID_WR << (8 - HT1632_ID_LEN);
 	}
 	// reset clipping
 	ht1632c_clip_reset();
@@ -268,7 +282,6 @@ void ht1632c_clip(const int x0, const int y0, const int x1, const int y1)
 	ht1632c_clipY1 = (y1 >= 0) ? y1 : ht1632c_height();
 }
 
-// #ifndef VERTICAL
 void ht1632c_plot(const int rx, const int ry, const uint8_t color)
 {
 	// clipping
@@ -277,29 +290,45 @@ void ht1632c_plot(const int rx, const int ry, const uint8_t color)
 	
 	// rotation
 	int x = (ht1632c_rot & 1) ? ry : rx;
-	if ((ht1632c_rot & 1) != (ht1632c_rot >> 1)) x = (WIDTH - 1) - x;
 	int y = (ht1632c_rot & 1) ? rx : ry;
-	if (ht1632c_rot & 2) y = (HEIGHT - 1) - y;
+	if (ht1632c_rot & 2) 
+	   x = (WIDTH - 1) - x; 
+	if (ht1632c_rot & 4) 
+	   y = (HEIGHT - 1) - y;
 	
-	const int xc = x / CHIP_WIDTH;
+	//const int xc = x / CHIP_WIDTH;
+	const int xc = y / CHIP_WIDTH;
 	const int yc = y / CHIP_HEIGHT;
-	const int chip = xc + (xc & 0xfffe) + (yc * 2);
-	
-	const int xb = (x % CHIP_WIDTH) * (CHIP_HEIGHT / 8);
-	const int yb = (y % CHIP_HEIGHT) + PANEL_HEADER_BITS;
+	//const int chip = xc + (xc & 0xfffe) + (yc * 2);
+	assert(xc < NUM_CHIPS);
+	const int chip = chip_lu[xc];
+
+	// first 10 bits in buffer are 101 (Write ID) + 7 zero addr bits.
+	// first data bit starts 10 bits in at address 1, bit 2 (3rd bit in)
+
+	// reverse last 8 bits of y: 0->7, 1->6, 
+	y = (y/8)*8 + (7- y%8);
+
+	const int xb = (x % CHIP_HEIGHT) * (CHIP_WIDTH / 8);
+	const int yb = (y % CHIP_WIDTH) + PANEL_HEADER_BITS;
+
+
 	int addr = xb + (yb / 8);
 	const uint8_t bitval = 128 >> (yb & 7);
-// 	printf("chip: %d, addr: %d, bit: %d\n", chip, addr, bitval);
 
-	// first color
+ 	//printf("x: %d, y: %d xb: %d, yb: %d\n", x, y, xb, yb);
+	//printf("chip: %d, addr: %d, bit: %d\n", chip, addr, bitval);
 	ht1632c_update_framebuffer(chip, addr, (color & 1), bitval);
-	if (addr <= 1 && bitval > 2) // special case: first bits must are 'wrapped' to the end
-		ht1632c_update_framebuffer(chip, addr + CHIP_SIZE - 2, (color & 1), bitval);
-	// other colors
-	for (int i = 1; i < COLORS; ++i) {
-		addr += COLOR_SIZE;
-		ht1632c_update_framebuffer(chip, addr, (color & (1 << i)), bitval); 
-	}
+	if (addr <= 1 && bitval > 2) // special case: first bits must are 'wrap	\
+ped' to the end                                                                 
+	  ht1632c_update_framebuffer(chip, addr + CHIP_SIZE - 2, (color & \
+ 1), bitval);
+
+	/* uint8_t const v0 = *FB_PTR(chip, 0); */
+	/* uint8_t const v1 = *FB_PTR(chip, 1); */
+	/* uint8_t const v2 = *FB_PTR(chip, 2); */
+	/* printf("buff 0 1 2: %0x %0x %0x", v0, v1, v2); */
+	
 }
 
 // #ifndef VERTICAL
