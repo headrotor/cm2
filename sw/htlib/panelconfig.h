@@ -46,7 +46,7 @@ uses wPi nbumbering, see "gpio readall"*/
 	#define CHIP_WIDTH 8           /* chip width (pixels) */
 	#define CHIP_HEIGHT 32           /* chip height (pixels) */
 	#define COLORS 1                /* number of colors (1 or 2) */
-        static const uint8_t chip_lu[] = {1, 0, 3, 2};
+static const uint8_t chip_lu[] = {3, 2, 1, 0};
 
 #endif
 #ifdef PANEL_32x16C
@@ -67,5 +67,7 @@ uses wPi nbumbering, see "gpio readall"*/
 	#define COLORS 1                /* number of colors (1 or 2) */
 #endif
 
-#define SPI_FREQ 2560000            /* SPI frequency (Hz; up to 32000000) */
+//#define SPI_FREQ 2560000            /* SPI frequency (Hz; up to 32000000) */
+#                32000000
+#define SPI_FREQ 16000000            /* SPI frequency (Hz; up to 32000000) */
 #define CS_CLK_DELAY 10             /* CS pulse length (µs) in chained CS mode */
