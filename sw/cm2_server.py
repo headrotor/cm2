@@ -42,9 +42,6 @@ num_chars = pix_h * pix_w // 4
 chars_per_col = pix_w // 4
 
 
-def send_text(textstr, x=0, y=0):
-    pass
-
 
 def check_int_param(param_str, pmin, pmax):
     # given an ascii string param, convert to int and check value
@@ -90,21 +87,10 @@ def send_hex(hex_frame):
 
     h.sendframe()
 
-def send_hex(hex_frame):
-    # send a frame of hexidecimal data to the cm2 display
-    m = 0
-    for i,c in enumerate(hex_frame):
-        n = int(c,16) # convert to binary string
-        nstr = format(n, '04b')
-        col = i // chars_per_col
-        for j in range(4): # 4 bits per hex char
-            if (nstr[j])  == '1': 
-                h.plot(col, m, 1)
-            else:
-                h.plot(col, m, 0)
-            m += 1
-        if m >=  pix_h:
-            m = 0
+    
+def send_text(text_str, x=0, y=0):
+    h.clear()
+    h.putstr(x, y, text_str, h.font12x16, 1, 0)
     h.sendframe()
 
 def print_hex(hex_frame):
@@ -159,17 +145,27 @@ class ServerHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
                 bright_str = qdict[key][0] 
                 set_brightness(bright_str)
             elif key == 'text':
-                bright_str = qdict[key][0] 
-                set_brightness(bright_str)
+                text_str = qdict[key][0] 
+                send_text(text_str, x, y)
+                print('setting text "{}"'.format(text_str))
 
             elif key == 'x':
                 param_str = qdict[key][0] 
-                x = check_int_param(param_str, 0, 31)
+                try:
+                    x = int(param_str)
+                except ValueError:
+                    print('Error converting "{}" to int'.format(param_str))
+                    break
             elif key == 'y':
                 param_str = qdict[key][0] 
-                y = check_int_param(param_str, 0, 31)
+                try:
+                    y = int(param_str)
+                except ValueError:
+                    print('Error converting "{}" to int'.format(param_str))
+                    break
+
             else:
-                print('Unrecognized parameter "{}", ignoring')
+                print('Unrecognized parameter "{}", ignoring'.format(key))
 
                 
         #SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
