@@ -42,7 +42,31 @@ num_chars = pix_h * pix_w // 4
 chars_per_col = pix_w // 4
 
 
+def send_text(textstr, x=0, y=0):
+    pass
 
+
+def check_int_param(param_str, pmin, pmax):
+    # given an ascii string param, convert to int and check value
+    try:
+        param_int = int(param_str)
+    except ValueError:
+        print('Error converting "{}" to int'.format(param_str))
+        return pmin
+
+    if param_int < pmin:
+        return pmin
+    if param_int > pmax:
+        return pmax
+    return param_int
+    
+def set_brightness(brightness_str):
+    # given an ascii string brightnes value, convert to int and send
+    pwm_val = check_int_param(brightness_str,0, 15)
+    print("setting pwm to {}".format(pwm_val))
+    h.pwm(pwm_val)
+
+    
 def send_hex(hex_frame):
     m = 0
     for i,c in enumerate(hex_frame):
@@ -110,17 +134,47 @@ class MyTCPServer(SocketServer.TCPServer):
 class ServerHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
     def do_GET(self):
-      #content_len = int(self.headers.getheader('content-length', 0))
-      #post_body = self.rfile.read(content_len)
+        #content_len = int(self.headers.getheader('content-length', 0))
+        #post_body = self.rfile.read(content_len)
 
-      fields = urlparse.urlparse(self.path)
-      #print(self.path)
-      print(fields)
-      hex_frame = fields[4]
-      send_hex(str(hex_frame))
-      print_hex(str(hex_frame))
-      SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
-      
+        # parse URL into fields
+        parsed = urlparse.urlparse(self.path)
+
+        # extract query paramaters as dict
+        qdict = urlparse.parse_qs(parsed.query)
+        print(str(qdict))
+
+        # default parameters
+        x = 0
+        y = 0
+        
+        # respond to each query paramater
+        for key in  qdict:
+            print("Got key " + key)
+            if key == 'frame':
+                hex_frame = qdict[key][0] 
+                send_hex(hex_frame)
+                print_hex(hex_frame)
+            elif key == 'bright':
+                bright_str = qdict[key][0] 
+                set_brightness(bright_str)
+            elif key == 'text':
+                bright_str = qdict[key][0] 
+                set_brightness(bright_str)
+
+            elif key == 'x':
+                param_str = qdict[key][0] 
+                x = check_int_param(param_str, 0, 31)
+            elif key == 'y':
+                param_str = qdict[key][0] 
+                y = check_int_param(param_str, 0, 31)
+            else:
+                print('Unrecognized parameter "{}", ignoring')
+
+                
+        #SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
+        self.send_response(200)
+
 Handler = ServerHandler
 
 #server = MyTCPServer(('0.0.0.0', 8080), Handler)
@@ -130,7 +184,7 @@ SocketServer.TCPServer.allow_reuse_address = True
 httpd = SocketServer.TCPServer(("", PORT), Handler)
 
 
-print("serving at port", PORT)
+print("CM2 server listening at port", PORT)
 try:
     httpd.serve_forever()
 except KeyboardInterrupt:
