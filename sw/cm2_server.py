@@ -10,6 +10,7 @@ from __future__ import division
 import SimpleHTTPServer
 import SocketServer
 import urlparse
+import argparse
 
 # Send one frame to the LED display.
 
@@ -19,17 +20,52 @@ import sys
 import time
 import ht1632c
 
-
+           
 PORT = 8000
 
 
 NUM_PANELS = 1
-PANEL_ROTATION = 3
 WIDTH = NUM_PANELS * 32
 HEIGHT = 32
 
 
+
+parser = argparse.ArgumentParser()
+
+
+parser.add_argument("--silent",
+                    help="don't print anything to stdout",
+                    action="store_true")
+parser.add_argument("--simulate",
+                    help="print a simulated screen to stdout",
+                    action="store_true")
+parser.add_argument("--flip_horizontal",
+                    help="reverse horizontal direction, x=0 is at right",
+                    action="store_true")
+parser.add_argument("--flip_xy",
+                    help="swap x and y directions, y is horizontal, x is vertical",
+                    action="store_true")
+parser.add_argument("--flip_vertical",
+                    help="reverse vertical direction, y=0 is at bottom",
+                    action="store_true")
+
+args = parser.parse_args()
 print("init ht1632c")
+
+
+
+PANEL_ROTATION = 3
+
+if args.flip_xy:
+    PANEL_ROTATION = PANEL_ROTATION - 1
+
+
+if args.flip_vertical:
+    PANEL_ROTATION = PANEL_ROTATION - 2
+
+if args.flip_horizontal:
+    PANEL_ROTATION = PANEL_ROTATION + 4
+
 
 h=ht1632c.HT1632C(NUM_PANELS, PANEL_ROTATION)
 
@@ -60,7 +96,8 @@ def check_int_param(param_str, pmin, pmax):
 def set_brightness(brightness_str):
     # given an ascii string brightnes value, convert to int and send
     pwm_val = check_int_param(brightness_str,0, 15)
-    print("setting pwm to {}".format(pwm_val))
+    if not args.silent:
+        print("setting pwm to {}".format(pwm_val))
     h.pwm(pwm_val)
 
     
@@ -70,27 +107,40 @@ def send_hex(hex_frame):
         n = int(c,16) # convert to binary string
         nstr = format(n, '04b')
         col = i // chars_per_col
-        #print(nstr)
         for j in range(4): # 4 bits per hex char
             if (nstr[j])  == '1': 
-                print('* ',end='')
                 h.plot(col, m, 1)
             else:
-                print('- ',end='')
                 h.plot(col, m, 0)
-            #print(str((i, col,m)))
             m += 1
         if m >=  pix_h:
-            print("")
             m = 0
-        #h.plot(j,i,1)
-
     h.sendframe()
 
     
-def send_text(text_str, x=0, y=0):
+def send_text(text_str, x=0, y=0, font_name='7x8num'):
+    fontdict = {'3x4num':h.font3x4num,   
+                '4x5num':h.font4x5num,  
+                '7x8num':h.font7x8num,  
+                '4x6':h.font4x6,      
+                '5x8':h.font5x8,      
+                '6x8':h.font6x8,      
+                '7x12':h.font7x12,     
+                '8x12':h.font8x12,     
+                '12x16':h.font12x16,    
+                '4x6sym':h.font4x6sym}  
+
+    try:
+        font = fontdict[font_name]
+    except KeyError:
+        print('Font "{}" not found, try one of')
+        for key in fontdict:
+            print(key)
+        font = fontdict['12x16']
+            
     h.clear()
-    h.putstr(x, y, text_str, h.font12x16, 1, 0)
+    h.putstr(x, y, text_str, font, 1, 0)
+
     h.sendframe()
 
 def print_hex(hex_frame):
@@ -117,8 +167,19 @@ class MyTCPServer(SocketServer.TCPServer):
         super().__init__(serverAddress, handler)
         self.allow_reuse_address = True
 
+
+
 class ServerHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
+    def __init__(self, *args):
+        self.font_name = '12x16'
+        SimpleHTTPServer.SimpleHTTPRequestHandler.__init__(self, *args)
+
+    # quiet log messages    
+    #def log_message(self, format, *args):
+    #    return
+
+        
     def do_GET(self):
         #content_len = int(self.headers.getheader('content-length', 0))
         #post_body = self.rfile.read(content_len)
@@ -128,7 +189,7 @@ class ServerHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
         # extract query paramaters as dict
         qdict = urlparse.parse_qs(parsed.query)
-        print(str(qdict))
+        #print(str(qdict))
 
         # default parameters
         x = 0
@@ -136,18 +197,24 @@ class ServerHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         
         # respond to each query paramater
         for key in  qdict:
-            print("Got key " + key)
+            #print("Got key " + key)
             if key == 'frame':
                 hex_frame = qdict[key][0] 
                 send_hex(hex_frame)
-                print_hex(hex_frame)
+                if args.simulate:
+                    print_hex(hex_frame)
             elif key == 'bright':
                 bright_str = qdict[key][0] 
                 set_brightness(bright_str)
             elif key == 'text':
                 text_str = qdict[key][0] 
-                send_text(text_str, x, y)
-                print('setting text "{}"'.format(text_str))
+                send_text(text_str, x, y, self.font_name)
+                if not args.silent:
+                    print('setting text "{}"'.format(text_str))
+            elif key == 'font':
+                self.font_name = qdict[key][0] 
+                if not args.silent:
+                    print('setting font to "{}"'.format(self.font_name))
 
             elif key == 'x':
                 param_str = qdict[key][0] 
@@ -180,7 +247,10 @@ SocketServer.TCPServer.allow_reuse_address = True
 httpd = SocketServer.TCPServer(("", PORT), Handler)
 
 
-print("CM2 server listening at port", PORT)
+
+
+if not args.silent:
+    print("CM2 server listening at port", PORT)
 try:
     httpd.serve_forever()
 except KeyboardInterrupt:

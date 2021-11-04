@@ -177,9 +177,9 @@ int ht1632c_init(const int num_panels, const int rot)
 	}
 	ht1632c_num_panels = num_panels;
 	printf("num_panels = %d\n", num_panels);
-	ht1632c_rot = rot & 3;
+	ht1632c_rot = rot & 0x7;
 	ht1632c_framebuffer = (uint8_t*) malloc(NUM_CHIPS * CHIP_SIZE);
-	printf("CHIP_SIZE %d\n",CHIP_SIZE);
+	//printf("CHIP_SIZE %d\n",CHIP_SIZE);
 	if (!ht1632c_framebuffer) {
 		printf( "Framebuffer allocation failed.");
 		return 3;
@@ -193,7 +193,7 @@ int ht1632c_init(const int num_panels, const int rot)
 #else
 	for (int i = 0; i < NUM_CHIPS; ++i) {
 		pinMode(HT1632_CS + i, OUTPUT);
-		printf("GPIO.%d configured as CS output\n",HT1632_CS + i);
+		printf("GPIO.%d configured as CS%d output\n",HT1632_CS + i,i);
 	}
 	printf("NUM_CHIPS %d\n",NUM_CHIPS);
 #endif
