@@ -9,20 +9,21 @@ Several test programs exist to excercise the CM2 display panel. 'setxy.py' turns
 $ python setxy.py 10 11
 ```
 
-The `testpattern.py`
-
 ## The CM2 HTTP Server
 
 `cm2_server.py` drives the display by running an http server at port
 8000 and responding to query strings in the URL of a GET request. Several command line options are available:
 
+```
+  -h, --help         show this help message and exit
+  --silent           don't print anything to stdout
+  --simulate         print a simulated screen to stdout
+  --flip_horizontal  reverse horizontal direction, x=0 is at right
+  --swap_xy          swap x and y directions, y is horizontal, x is vertical
+  --flip_vertical    reverse vertical direction, y=0 is at bottom
+```
 
-
-
-
-
-To
-send a frame of data, send 128 characters of hexadecimal data in
+To send a frame of data, send 128 characters of hexadecimal data in
 column-major order with the `frame` query parameter.
 
 Each 8 hex characters represent 32 bits in one column of LEDs. For
