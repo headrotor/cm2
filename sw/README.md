@@ -50,8 +50,9 @@ Other query parameters are:
   32 pixels can be displayed sequentially.
 
 * `?clear=0` clears the display. This can be used with the `text`
-  query to display text on a blank background or by itself to clear
-  the display.
+  query to display text on a blank background. Note this only works with 
+  the `text` command; to clear the display completely, send a `clear=0` 
+  together with `text=%20` (space).
 
 
 Several fonts are available, specified by character size as follows:
