@@ -42,7 +42,7 @@ parser.add_argument("--simulate",
 parser.add_argument("--flip_horizontal",
                     help="reverse horizontal direction, x=0 is at right",
                     action="store_true")
-parser.add_argument("--flip_xy",
+parser.add_argument("--swap_xy",
                     help="swap x and y directions, y is horizontal, x is vertical",
                     action="store_true")
 parser.add_argument("--flip_vertical",
@@ -53,10 +53,10 @@ args = parser.parse_args()
 print("init ht1632c")
 
 
-
+# defult to flip vertical and rotate so origin is at top left. 
 PANEL_ROTATION = 3
 
-if args.flip_xy:
+if args.swap_xy:
     PANEL_ROTATION = PANEL_ROTATION - 1
 
 
@@ -118,7 +118,7 @@ def send_hex(hex_frame):
     h.sendframe()
 
     
-def send_text(text_str, x=0, y=0, font_name='7x8num'):
+def send_text(text_str, x=0, y=0, font_name='7x8num', clear = False):
     fontdict = {'3x4num':h.font3x4num,   
                 '4x5num':h.font4x5num,  
                 '7x8num':h.font7x8num,  
@@ -138,7 +138,8 @@ def send_text(text_str, x=0, y=0, font_name='7x8num'):
             print(key)
         font = fontdict['12x16']
             
-    h.clear()
+    if clear:
+        h.clear()
     h.putstr(x, y, text_str, font, 1, 0)
 
     h.sendframe()
@@ -194,6 +195,7 @@ class ServerHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         # default parameters
         x = 0
         y = 0
+        clear = False
         
         # respond to each query paramater
         for key in  qdict:
@@ -203,12 +205,14 @@ class ServerHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
                 send_hex(hex_frame)
                 if args.simulate:
                     print_hex(hex_frame)
+            elif key == 'clear':
+                clear = True
             elif key == 'bright':
                 bright_str = qdict[key][0] 
                 set_brightness(bright_str)
             elif key == 'text':
                 text_str = qdict[key][0] 
-                send_text(text_str, x, y, self.font_name)
+                send_text(text_str, x, y, self.font_name, clear)
                 if not args.silent:
                     print('setting text "{}"'.format(text_str))
             elif key == 'font':
