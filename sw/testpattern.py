@@ -10,6 +10,7 @@ import os
 import sys
 #print os.environ
 import time
+import timeit
 import ht1632c
 
 
@@ -35,6 +36,16 @@ sleeptime=0.1
 mode = "default"
 if len(sys.argv) > 1:
     mode = sys.argv[1]
+
+def send_two_frames():
+    # test for framerate: alternately light two top left pixels
+    h.plot(0, 0, 1)            
+    h.plot(0, 1, 0)            
+    h.sendframe()
+    h.plot(0, 0, 0)            
+    h.plot(0, 1, 1)            
+    h.sendframe()
+
 
 print("test pattern mode " + mode)
 h.clear()
@@ -82,11 +93,24 @@ try:
         elif mode == "text":
             h.clear()
             for j in range(150):
-
                 h.putstr(32-j, 10, "Hello world!", h.font12x16, 1, 0)
                 h.sendframe()
                 time.sleep(0.1)
                 h.clear()
+        elif mode == "time":
+            h.clear()
+            #send_time = timeit.timeit(h.sendframe,number=100)
+            repeat_count = 1
+            send_time = timeit.timeit(send_two_frames,number=repeat_count)
+            # seconds per frame (spf) is send_time/number of frames so
+            # fps is 1/spf = repeat_count * 2 / send_time
+            fps = 2.*repeat_count/send_time
+            print("sendframe rate: {:6.1f} fps (reps = {})".format(fps, repeat_count))
+            sys.stdout.flush()
+        else:
+            print('unrecognized mode "{}"'.format(mode))
+            h.close()
+            sys.exit()
 
 except KeyboardInterrupt:
     # quit
