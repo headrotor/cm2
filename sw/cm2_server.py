@@ -176,9 +176,9 @@ class ServerHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         self.font_name = '12x16'
         SimpleHTTPServer.SimpleHTTPRequestHandler.__init__(self, *args)
 
-    # quiet log messages    
-    #def log_message(self, format, *args):
-    #    return
+    #quiet log messages    
+    def log_message(self, format, *args):
+        return
 
         
     def do_GET(self):
@@ -190,7 +190,8 @@ class ServerHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
         # extract query paramaters as dict
         qdict = urlparse.parse_qs(parsed.query)
-        #print(str(qdict))
+        if not args.silent:
+            print(str(qdict))
 
         # default parameters
         x = 0
