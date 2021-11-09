@@ -37,15 +37,33 @@ mode = "default"
 if len(sys.argv) > 1:
     mode = sys.argv[1]
 
-def send_two_frames():
+def send_two_grids():
     # test for framerate: alternately light two top left pixels
+    for i in range(HEIGHT):
+        for j in range(WIDTH):
+            if (i + j) % 2 == 0:
+                h.plot(i,j,0)
+            else:
+                h.plot(i,j,1)
+    h.sendframe()
+    for i in range(HEIGHT):
+        for j in range(WIDTH):
+            if (i + j) % 2 == 0:
+                h.plot(i,j,1)
+            else:
+                h.plot(i,j,0)
+    h.sendframe()
+
+
+def send_two_frames():
+    # test for framerate: alternately light alternate pixels
     h.plot(0, 0, 1)            
     h.plot(0, 1, 0)            
     h.sendframe()
     h.plot(0, 0, 0)            
     h.plot(0, 1, 1)            
     h.sendframe()
-
+    
 
 print("test pattern mode " + mode)
 h.clear()
@@ -106,7 +124,21 @@ try:
             # fps is 1/spf = repeat_count * 2 / send_time
             fps = 2.*repeat_count/send_time
             print("sendframe rate: {:6.1f} fps (reps = {})".format(fps, repeat_count))
-            sys.stdout.flush()
+
+        elif mode == "bright":
+            h.pwm(0)
+            send_two_grids()
+            for i in range(15):
+                #send_time = timeit.timeit(h.sendframe,number=100)
+                print("Set PWM to {}/15".format(i))
+                h.pwm(i)
+                time.sleep(0.2)
+            for i in range(14):
+                #send_time = timeit.timeit(h.sendframe,number=100)
+                print("Set PWM to {}/15".format(15-i))
+                h.pwm(15-i)
+                time.sleep(0.2)
+
         else:
             print('unrecognized mode "{}"'.format(mode))
             h.close()
