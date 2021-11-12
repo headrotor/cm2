@@ -551,13 +551,15 @@ void ht1632c_game(int x0, int y0, int x1, int y1, const uint8_t color)
 }
 
 int ht1632c_hexframe(const char* s){
-  printf("got hex frame: '%s'\n", s) ;
+  // for speed, put hex-encoded frame data into memory
+  // returns count of characters sent
+  //printf("got hex frame: '%s'\n", s) ;
   int x = 0;
   int y = 0;
+  int count = 0;
   for (; *s; ++s) {
-    // convert hex char *s to ascii
     uint8_t byte = *s; 
-        // transform hex character to the 4bit equivalent number, using the ascii table indexes
+    // convert ascii character to the 4bit equivalent number
     if (byte >= '0' && byte <= '9')
       byte = byte - '0';
     else if (byte >= 'a' && byte <='f')
@@ -566,17 +568,17 @@ int ht1632c_hexframe(const char* s){
       byte = byte - 'A' + 10;    
     else
       byte = 0;
-    
-    ht1632c_plot(x, y++, byte & 0x01);
-    ht1632c_plot(x, y++, byte & 0x02);
-    ht1632c_plot(x, y++, byte & 0x04);
-    ht1632c_plot(x, y++, byte & 0x08);
-    
+    // Unroll loop, set 4 bits for this char
+    ht1632c_plot(x, y++,  (byte & 0x08) ? 1 : 0);
+    ht1632c_plot(x, y++,  (byte & 0x04) ? 1 : 0);
+    ht1632c_plot(x, y++,  (byte & 0x02) ? 1 : 0);
+    ht1632c_plot(x, y++,  (byte & 0x01) ? 1 : 0);
+
     if ( y >= 32) {
       y = 0;
       x++;
     }
-    
+    count++;
   }
-  return(0);
+  return(count);
 }

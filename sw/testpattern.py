@@ -63,6 +63,15 @@ def send_two_frames():
     h.plot(0, 0, 0)            
     h.plot(0, 1, 1)            
     h.sendframe()
+
+def send_two_hex_frames():
+    # test for framerate: alternately light alternate pixels
+    h.hexframe('F0000000800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001FFFFFFFF')
+    h.sendframe()
+
+    h.hexframe('FFFFFFFF800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001FFFFFFFF')
+    h.sendframe()
+
     
 
 print("test pattern mode " + mode)
@@ -118,8 +127,9 @@ try:
         elif mode == "time":
             h.clear()
             #send_time = timeit.timeit(h.sendframe,number=100)
-            repeat_count = 1
-            send_time = timeit.timeit(send_two_frames,number=repeat_count)
+            repeat_count = 10
+            #send_time = timeit.timeit(send_two_frames,number=repeat_count)
+            send_time = timeit.timeit(send_two_hex_frames,number=repeat_count)
             # seconds per frame (spf) is send_time/number of frames so
             # fps is 1/spf = repeat_count * 2 / send_time
             fps = 2.*repeat_count/send_time
@@ -140,13 +150,13 @@ try:
                 h.pwm(15-i)
                 time.sleep(0.2)
 
-        elif mode == "clear":
+        elif mode == "hex":
             print('Clearing display. Bye.')
-            h.hexframe('FFFFFFFF800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001FFFFFFFF')
+            h.hexframe('F0000000800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001FFFFFFFF')
             h.sendframe()
             h.close()
             sys.exit()
-        elif mode == "hex":
+        elif mode == "clear":
             print('Clearing display. Bye.')
             h.clear()
             h.close()

@@ -117,6 +117,28 @@ def send_hex(hex_frame):
             m = 0
     h.sendframe()
 
+def send_hex_old(hex_frame):
+    # old slow version, decode hex and set bit-by-bit
+    m = 0
+    for i,c in enumerate(hex_frame):
+        n = int(c,16) # convert to binary string
+        nstr = format(n, '04b')
+        col = i // chars_per_col
+        for j in range(4): # 4 bits per hex char
+            if (nstr[j])  == '1': 
+                h.plot(col, m, 1)
+            else:
+                h.plot(col, m, 0)
+            m += 1
+        if m >=  pix_h:
+            m = 0
+    h.sendframe()
+
+def send_hex(hex_frame_data):
+    # new fast version, send entire frame to driver
+    h.hexframe(hex_frame_data)
+    h.sendframe()
+
     
 def send_text(text_str, x=0, y=0, font_name='7x8num', clear = False):
     fontdict = {'3x4num':h.font3x4num,   

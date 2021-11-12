@@ -23,5 +23,8 @@ libht1632c.a:	ht1632c.o fonts.o rotenc.o
 test:	test.o libht1632c.a /usr/lib/libwiringPi.so
 	gcc -std=c99 -o $@ $^
 
+sendframe:	sendframe.o libht1632c.a /usr/lib/libwiringPi.so
+	gcc -std=c99 -o $@ $^
+
 %.o:	%.c
 	gcc -std=c99 -o $@ -c $^
