@@ -129,16 +129,28 @@ try:
             h.pwm(0)
             send_two_grids()
             for i in range(15):
-                #send_time = timeit.timeit(h.sendframe,number=100)
+                # fade up from pwm 0
                 print("Set PWM to {}/15".format(i))
                 h.pwm(i)
                 time.sleep(0.2)
             for i in range(14):
+                # fade down from PWM 15
                 #send_time = timeit.timeit(h.sendframe,number=100)
                 print("Set PWM to {}/15".format(15-i))
                 h.pwm(15-i)
                 time.sleep(0.2)
 
+        elif mode == "clear":
+            print('Clearing display. Bye.')
+            h.hexframe('FFFFFFFF800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001800000018000000180000001FFFFFFFF')
+            h.sendframe()
+            h.close()
+            sys.exit()
+        elif mode == "hex":
+            print('Clearing display. Bye.')
+            h.clear()
+            h.close()
+            sys.exit()
         else:
             print('unrecognized mode "{}"'.format(mode))
             h.close()

@@ -66,6 +66,7 @@ int ht1632c_putchar(const int x, const int y, const char c, const FontInfo* font
 /// Prints a string.
 int ht1632c_putstr(const int x, const int y, const char* s, const FontInfo* font, const uint8_t color, const uint8_t bg);
 
+
 /// Returns the character width (pixels) of given font.
 int ht1632c_fontwidth(const FontInfo* font);
 
@@ -74,5 +75,9 @@ int ht1632c_fontheight(const FontInfo* font);
 
 ///
 void ht1632c_game(int x0, int y0, int x1, int y1, const uint8_t color);
+
+/// jtf addion: convert a hex string to to display memory frame
+int ht1632c_hexframe(const char* s);
+
 
 #endif

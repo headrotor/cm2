@@ -43,7 +43,10 @@ class HT1632C(object):
 		self.lib.ht1632c_fontwidth.restype = c_int
 		self.lib.ht1632c_fontheight.argtypes = [c_void_p]
 		self.lib.ht1632c_fontheight.restype = c_int
-		
+
+		self.lib.ht1632c_hexframe.argtypes = [c_char_p]
+		self.lib.ht1632c_hexframe.restype = c_int
+
 		print("Initializing HT1632C")
 		if self.lib.ht1632c_init(num_panels, rotation) != 0:
 			raise IOError("Could not init display")
@@ -90,6 +93,8 @@ class HT1632C(object):
 	
 	def putstr(self, x, y, s, font, color, bg):
 		return self.lib.ht1632c_putstr(x, y, encodeStr(s), font, color, bg)
+	def hexframe(self, s):
+		return self.lib.ht1632c_hexframe(encodeStr(s))
 
 	def putstr_metric(self, x, y, s, font, color, bg):
 		return self.lib.ht1632c_putstr_metric(x, y, encodeStr(s), font, color, bg)
