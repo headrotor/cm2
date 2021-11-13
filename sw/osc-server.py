@@ -3,9 +3,11 @@
 This program listens to several addresses, and prints some information about
 received packets.
 """
+import sys
 import argparse
 import math
 import ht1632c
+import time
 
 from pythonosc import dispatcher
 from pythonosc import osc_server
@@ -17,13 +19,19 @@ PANEL_ROTATION =  3
 WIDTH = NUM_PANELS * 32
 HEIGHT = 32
 
-
+global then
+then = time.perf_counter()
 
 def send_hex_handler(unused_addr, args, frame_data):
+    global then
     #print("[{0}] ~ {1}".format(args[0], frame_data))
+    
     h.hexframe(frame_data)
     h.sendframe()
-
+    now = time.perf_counter()
+    print("delta time: {}".format(now - then))
+    then = now
+    sys.stdout.flush()
     
 def print_volume_handler(unused_addr, args, volume):
     print("[{0}] ~ {1}".format(args[0], volume))
