@@ -6,9 +6,8 @@ def send_two_frames():
     # to test timing, send two frames as rapidly as possible
 
 
-    # 12.4fps with numerical hostname
+    # faster with numerical host?
     host = '192.168.1.145' 
-    # 8.9fps with named host (bonjour?)
     #host = 'cm2.localhost' 
 
     url_str1 = "http://{}:8000/?frame=aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555".format(host)
@@ -16,7 +15,7 @@ def send_two_frames():
     url_str2 = "http://{}:8000/?frame=55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa".format(host)
 
     s = requests.Session()
-    # does keepalive by default
+    # does keepalive by default -- doesn't seem to help???
     try:
         r = s.get(url_str1)
         r = s.get(url_str2)

@@ -22,7 +22,6 @@ def send_two_frames():
         response.close()
     except KeyboardInterrupt:
         # quit
-        response.close()
         print("\nbye!")
         sys.exit()  
 
