@@ -13,12 +13,16 @@ from pythonosc import udp_client
 
 def send_two_hex_frames(client):
 
+    delay = 0.01 # 100 fps
     # test for framerate: alternately light alternate pixels
     frame1 = "aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555"
 
     frame2 = "55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa"
     client.send_message("/hexframe", frame1)
+    time.sleep(delay)
     client.send_message("/hexframe", frame2)
+    time.sleep(delay)
+
  
 
     
