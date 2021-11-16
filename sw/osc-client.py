@@ -73,4 +73,11 @@ if __name__ == "__main__":
             except KeyboardInterrupt:
                 break
             
+    elif args.mode == 'line':
+        print("sending line")
+        client.send_message("/line", [[0,0,10,10]])
+
+    elif args.mode == 'clear':
+        print("sending clear")
+        client.send_message("/clear", True)
         
