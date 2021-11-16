@@ -44,18 +44,21 @@ def send_hex_handler(unused_addr, args, frame_data):
     h.hexframe(frame_data)
     h.sendframe()
     now = time.perf_counter()
-    print("delta time: {}".format(now - then))
+    #print("delta time: {}".format(now - then))
     then = now
     sys.stdout.flush()
     
 # def print_volume_handler(unused_addr, args, volume):
 #     print("[{0}] ~ {1}".format(args[0], volume))
 
-def brightness_handler(brightness_str):
+def text_handler(unused_addr, args, brightness):
+    pass
+
+def brightness_handler(unused_addr, args, brightness):
     # given an ascii string brightnes value, convert to int and send
-    pwm_val = check_int_param(brightness_str,0, 15)
-    if not args.silent:
-        print("setting pwm to {}".format(pwm_val))
+    pwm_val = check_int_param(brightness,0, 15)
+    #if not args.silent:
+    print("setting pwm to {}".format(pwm_val))
     h.pwm(pwm_val)
 
 
@@ -109,6 +112,8 @@ if __name__ == "__main__":
     dispatcher = dispatcher.Dispatcher()
     dispatcher.map("/filter", print)
     dispatcher.map("/hexframe", send_hex_handler, "Hexframe")
+    dispatcher.map("/text", text_handler, "Text")
+    dispatcher.map("/bright", brightness_handler, "Brightness")
 
     #dispatcher.map("/volume", print_volume_handler, "Volume")
     #dispatcher.map("/logvolume", print_compute_handler, "Log volume", math.log)
