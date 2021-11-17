@@ -74,12 +74,23 @@ if __name__ == "__main__":
         while True:
             try:
                 for i in range(32):
-                    client.send_message("/line", [[0,i,31,31-i]])
                     client.send_message("/clear", True)
+                    client.send_message("/line", [[0,i,31,31-i]])
                     time.sleep(frametime)
                 for j in range(32):
-                    client.send_message("/line", [[31-j,0,j,31]])
                     client.send_message("/clear", True)
+                    client.send_message("/line", [[31-j,0,j,31]])
+                    time.sleep(frametime)
+            except KeyboardInterrupt:
+                break
+
+    elif args.mode == 'box':
+        print("sending lines")
+        while True:
+            try:
+                client.send_message("/clear", True)
+                for i in range(32):
+                    client.send_message("/box", [[0,0,i,i]])
                     time.sleep(frametime)
             except KeyboardInterrupt:
                 break
