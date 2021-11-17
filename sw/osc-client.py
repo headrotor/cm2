@@ -12,9 +12,8 @@ from pythonosc import osc_message_builder
 from pythonosc import udp_client
 
 
-def send_two_hex_frames(client):
+def send_two_hex_frames(client, delay):
 
-    delay = 0.01  # 100 fps
     # test for framerate: alternately light alternate pixels
     frame1 = "aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555aaaaaaaa55555555"
 
@@ -23,14 +22,6 @@ def send_two_hex_frames(client):
     time.sleep(delay)
     client.send_message("/hexframe", frame2)
     time.sleep(delay)
-
-def set_brightness(client, brightness):
-
-    delay = 0.01  # 100 fps
-    # test for framerate: alternately light alternate pixels
-    client.send_message("/bright", brightness)
-
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -43,17 +34,22 @@ if __name__ == "__main__":
                         help="The port the OSC server is listening on")
     parser.add_argument("--brightness",
                         type=int,
-                        default=15,
                         help="PWM brightness 0-15")
+    parser.add_argument("--fps",
+                        type=int,
+                        default=30,
+                        help="Frames per second")
     parser.add_argument('mode')
     args = parser.parse_args()
 
     client = udp_client.SimpleUDPClient(args.ip, args.port)
 
+    # sleep for this many seconds between frames
+    frametime = 1./float(args.fps)
 
     if args.brightness is not None:
-        print("Set brightness")
-        set_brightness(client, args.brightness)
+        print(f"Setting brightness to {args.brightness}")
+        client.send_message("/bright", args.brightness)
     
     if args.mode == 'time':
 
@@ -62,8 +58,8 @@ if __name__ == "__main__":
                 repeat_count = 100
                 #send_time = timeit.timeit(send_two_frames,number=repeat_count)
                 send_time = timeit.timeit(
-                    "send_two_hex_frames(client)",
-                    setup="from __main__ import send_two_hex_frames, client",
+                    "send_two_hex_frames(client, frametime)",
+                    setup="from __main__ import send_two_hex_frames, client, frametime",
                     number=repeat_count)
                 # seconds per frame (spf) is send_time/number of frames so
                 # fps is 1/spf = repeat_count * 2 / send_time
@@ -74,10 +70,40 @@ if __name__ == "__main__":
                 break
             
     elif args.mode == 'line':
-        print("sending line")
-        client.send_message("/line", [[0,0,10,10]])
+        print("sending lines")
+        while True:
+            try:
+                for i in range(32):
+                    client.send_message("/line", [[0,i,31,31-i]])
+                    client.send_message("/clear", True)
+                    time.sleep(frametime)
+                for j in range(32):
+                    client.send_message("/line", [[31-j,0,j,31]])
+                    client.send_message("/clear", True)
+                    time.sleep(frametime)
+            except KeyboardInterrupt:
+                break
+        
 
+
+    elif args.mode == 'text':
+        print("sending text")
+        while True:
+            try:
+                for i in range(180):
+                    client.send_message("/clear", True)
+                    client.send_message("/text", [['Hello world!',5-i,10]])
+                    time.sleep(frametime)
+            except KeyboardInterrupt:
+                break
+
+    elif args.mode == 'font':
+        print("setting font")
+        client.send_message("/font", ['7x12'])
+        
     elif args.mode == 'clear':
         print("sending clear")
         client.send_message("/clear", True)
         
+    else:
+        print("unrecognized mode: " + args.mode)
