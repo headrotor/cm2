@@ -69,13 +69,20 @@ class OscHandlers(object):
         self.throttle_then = time.time()
         self.print_fps()
 
+    def draw_box(self, unused_addr, args, data):
+        #print("Line handler")
+        self.h.box(data[0], data[1], data[2], data[3], 1)
+        self.h.sendframe()
+        self.throttle_then = time.time()
+        self.print_fps()
+
     def plot_pixel(self, unused_addr, args, data):
         print("Plot handler")
         self.h.plot(data[0], data[1], data[2])
         self.h.sendframe()
         
     def send_clear(self, unused_addr, args, data):
-        print("Clear")
+        #print("Clear")
         h.clear()
         h.sendframe()
     # def print_volume_handler(unused_addr, args, volume):
@@ -133,19 +140,6 @@ def send_hex_handler(unused_addr, args, frame_data):
     #print("delta time: {}".format(now - then))
     then = now
     sys.stdout.flush()
-
-def draw_line_handler(unused_addr, args, data):
-    print("Line handler")
-    print(str(args))
-    print(str(data))
-       
-    h.line(data[0], data[1], data[2], data[3], 1)
-    h.sendframe()
-    
-
-# def print_volume_handler(unused_addr, args, volume):
-#     print("[{0}] ~ {1}".format(args[0], volume))
-
 
 
 
@@ -210,6 +204,7 @@ if __name__ == "__main__":
     dispatcher.map("/pixel", handlers.plot_pixel, "Pixel")
     dispatcher.map("/bright", handlers.set_bright, "Brightness")
     dispatcher.map("/line", handlers.draw_line, "Line")
+    dispatcher.map("/box", handlers.draw_box, "Box")
     dispatcher.map("/font", handlers.set_font, "Font")
     dispatcher.map("/text", handlers.send_text, "Text")
     dispatcher.map("/clear", handlers.send_clear, "Clear")
