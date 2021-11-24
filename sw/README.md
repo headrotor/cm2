@@ -81,3 +81,10 @@ the following command will display text at 10, 10 with a brightness of
 ```console
 $ curl -s 'http://cm2.local:8000/?clear=0&x=10&y=10&bright=4&&text=Hello%20World'
 ```
+
+### OSC_SERVER
+
+A server using Open Sound Control uses UDP instead of HTTP and can be much faster (at the cost of missing frames).
+
+This depends on https://pypi.org/project/python-osc/ and runs under python3.
+python3 -m pip install python-osc

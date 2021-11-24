@@ -23,6 +23,7 @@ class OscHandlers(object):
     def __init__(self, client, args):
         self.then = time.perf_counter()
         self.h = client
+        self.simulate = args.simulate
         self.silent = args.silent
         self.print_rate = args.print_rate
         self.throttle_time = 1./args.throttle_fps    
@@ -56,12 +57,35 @@ class OscHandlers(object):
             time.sleep(0.001)
             
     def send_hex(self, unused_addr, args, frame_data):
+        if self.simulate:
+            self.print_hex(frame_data)
         self.throttle_block()
         self.h.hexframe(frame_data)
         self.h.sendframe()
         self.throttle_then = time.time()
         self.print_fps()
+
+    def print_hex(self, hex_frame):
+        # for debugging, send ascii frame to stdout
+        m = 0
+        chars_per_col = 8
         
+        for i,c in enumerate(hex_frame):
+            n = int(c,16) # convert to binary string
+            nstr = format(n, '04b')
+            col = i // chars_per_col
+            #print(nstr)
+            for j in range(4): # 4 bits per hex char
+                if (nstr[j])  == '1': 
+                    print('* ',end='')
+                else:
+                    print('- ',end='')
+                m += 1
+            if m >=  4*chars_per_col:
+                # end of line, print newline
+                print("")
+                m = 0
+
     def draw_line(self, unused_addr, args, data):
         #print("Line handler")
         self.h.line(data[0], data[1], data[2], data[3], 1)
@@ -129,18 +153,6 @@ class OscHandlers(object):
         if param_int > pmax:
             return pmax
         return param_int
-
-def send_hex_handler(unused_addr, args, frame_data):
-    global then
-    #print("[{0}] ~ {1}".format(args[0], frame_data))
-    
-    h.hexframe(frame_data)
-    h.sendframe()
-    now = time.perf_counter()
-    #print("delta time: {}".format(now - then))
-    then = now
-    sys.stdout.flush()
-
 
 
 def print_compute_handler(unused_addr, args, volume):
@@ -212,7 +224,8 @@ if __name__ == "__main__":
     #dispatcher.map("/volume", print_volume_handler, "Volume")
     #dispatcher.map("/logvolume", print_compute_handler, "Log volume", math.log)
 
-    server = osc_server.ThreadingOSCUDPServer(
+    #server = osc_server.ThreadingOSCUDPServer(
+    server = osc_server.BlockingOSCUDPServer(
         (args.ip, args.port), dispatcher)
     print("Serving on {}".format(server.server_address))
     server.serve_forever()

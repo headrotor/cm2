@@ -8,16 +8,16 @@ clean:
 
 PYTHON_VERSION=2.7
 
-libht1632c-py.so:	ht1632c.o fonts.o rotenc.c /usr/lib/libwiringPi.so
+libht1632c-py.so:	ht1632c.o fonts.o  /usr/lib/libwiringPi.so
 	gcc -std=c99 -shared -DPYTHON -I/usr/include/python${PYTHON_VERSION} -L/Python${PYTHON_VERSION}/libs -lpython${PYTHON_VERSION} -o $@ $^
 	strip $@
 	cp  $@ ..
 
-libht1632c.so:	ht1632c.o fonts.o rotenc.o /usr/lib/libwiringPi.so
+libht1632c.so:	ht1632c.o fonts.o  /usr/lib/libwiringPi.so
 	gcc -std=c99 -shared -o $@ $^
 	strip $@
 
-libht1632c.a:	ht1632c.o fonts.o rotenc.o
+libht1632c.a:	ht1632c.o fonts.o 
 	ar rcs $@ $^
 
 test:	test.o libht1632c.a /usr/lib/libwiringPi.so
