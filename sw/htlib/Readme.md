@@ -1,20 +1,11 @@
-# ht1632clib
+Forked from https://github.com/DerBer/ht1632clib.git and modified for 32 x 32 by jtf
 
-Library for HT1632C-based LED dot matrix displays on Raspberry Pi using WiringPi
+Depends on `wiringpi`
 
-## Requirements
+git clone https://github.com/WiringPi/WiringPi.git
 
-### Debian Packages
-* python-dev
+For Zero 2 as of Nov 2021 I needed WiringPi from here:
+https://github.com/PinkFreud/WiringPi
 
-### External Projects
-* WiringPi: https://github.com/WiringPi/WiringPi.git
-
-## Installation
-
-Read INSTALL
-
-## Examples
-
-Have a look at the examples directory, includes descriptions about
-how to connect your Raspberry PI and LED dot matrix displays.
+Also depends on python2.7 libraries (yes I know but...)
+sudo apt intstall python-dev (as of this writing installs python2.7 if not there and makes it the default)
