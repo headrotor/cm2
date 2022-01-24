@@ -372,15 +372,7 @@
         "microvia_diameter": 0.3,
         "microvia_drill": 0.1,
         "name": "colbus",
-        "nets": [
-          "/col01",
-          "/col02",
-          "/col03",
-          "/col04",
-          "/col05",
-          "/col06",
-          "/col07"
-        ],
+        "nets": [],
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 1.0,
